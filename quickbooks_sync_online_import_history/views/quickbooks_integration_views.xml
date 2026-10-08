@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quickbooks_integration_form_inherit_history" model="ir.ui.view">
+        <field name="name">quickbooks.integration.form.inherit.history</field>
+        <field name="model">quickbooks.integration</field>
+        <field name="inherit_id" ref="quickbooks_sync_online.quickbooks_integration_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_import_form']" position="after">
+                <button name="action_import_historical_invoice_poc" 
+                        type="object" 
+                        string="Run Import PoC (History)" 
+                        class="btn btn-warning mt-2" 
+                        invisible="state != 'active'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

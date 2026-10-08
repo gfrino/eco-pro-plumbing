@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_interventi_intervento,access_interventi_intervento,model_interventi_intervento,base.group_user,1,1,1,1
+access_create_intervento_wizard,access_create_intervento_wizard,model_create_intervento_wizard,base.group_user,1,1,1,1
+access_interventi_intervento_slot,access_interventi_intervento_slot,model_interventi_intervento_slot,base.group_user,1,1,1,1

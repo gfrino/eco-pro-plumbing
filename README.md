@@ -9,6 +9,20 @@ added as-is to the Odoo `addons_path`.
 | Module | Version | Description |
 | --- | --- | --- |
 | [`tw_companycam`](tw_companycam) | 19.0.1.0.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
+| [`eco_pro_custom`](eco_pro_custom) | 19.0.1.2.0 | **Eco Pro Customizations** – Job Location / EIN labels, credit-card fee, "Estimates" menu, marketing origin on contacts, formatted quotation notes |
+| [`interventi_management`](interventi_management) | 19.0.1.2.0 | **Job Requests** – plan job requests quickly from contacts |
+| [`quick_quotation`](quick_quotation) | 1.0 | **Quick Estimates** – dashboard to build estimates fast from Good/Better/Best templates |
+| [`quote_template_versions`](quote_template_versions) | 1.0 | **Quote Template Versions** – Good, Better, Best versions in quotation templates |
+| [`quickbooks_sync_online_import_history`](quickbooks_sync_online_import_history) | 19.0.1.0.0 | **QuickBooks Import History** – imports historical invoices from QuickBooks (proof of concept) |
+
+### Third-party modules (not in this repository)
+
+Installed on the server in `/mnt/extra-addons` but not published here:
+
+- `quickbooks_sync_online` – VentorTech QuickBooks Online Connector PRO (paid, OPL-1 licence: must not be redistributed).
+- `integration_queue_job` – VentorTech / OCA queue job, required by the connector (available from its vendor).
+
+`quickbooks_sync_online_import_history` and `eco_pro_custom` depend on `quickbooks_sync_online`.
 
 ### tw_companycam – CompanyCam
 
@@ -41,3 +55,6 @@ Access groups: *CompanyCam / User* (users delete only their own captures) and
 ## Changelog
 
 - **tw_companycam 19.0.1.0.0** – First release.
+- **eco_pro_custom 19.0.1.2.0** – Formatted (rich-text) note lines in quotations, shown on PDF and portal: the client needs highlighted notes between products.
+- **eco_pro_custom 19.0.1.1.0** – Campaign / Medium / Source / Referred By on contacts, filled from the lead and copied to new quotations: see where each customer comes from without opening leads.
+- **2026-10-08** – Imported `eco_pro_custom`, `interventi_management`, `quick_quotation`, `quote_template_versions`, `quickbooks_sync_online_import_history` as they run on the production server, so GitHub is the source of truth.

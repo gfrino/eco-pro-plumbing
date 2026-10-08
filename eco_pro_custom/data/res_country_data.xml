@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Update US vat_label to EIN -->
+        <record id="base.us" model="res.country">
+            <field name="vat_label">EIN</field>
+        </record>
+    </data>
+</odoo>

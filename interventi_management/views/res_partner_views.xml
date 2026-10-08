@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_interventi" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.interventi</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="%(interventi_management.action_create_intervento_wizard)d" 
+                            string="Create Job Request" 
+                            type="action" 
+                            context="{'default_partner_id': id}"
+                            class="btn-success"
+                            style="font-weight: bold; padding: 10px 20px; font-size: 16px; border-radius: 8px;"/>
+                </header>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_interventi" icon="fa-wrench">
+                    <field string="Job Requests" name="intervento_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form_interventi" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.interventi</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Job Calendar Settings" name="calendar_settings">
+                    <group>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

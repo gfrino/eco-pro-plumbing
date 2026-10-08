@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_interventi_intervento_slot_calendar" model="ir.ui.view">
+        <field name="name">interventi.intervento.slot.calendar</field>
+        <field name="model">interventi.intervento.slot</field>
+        <field name="arch" type="xml">
+            <calendar string="Job Calendar" date_start="date_start" date_stop="date_end" color="color" mode="week" event_open_popup="True" all_day="is_whole_day">
+                <field name="name"/>
+                <field name="user_id" avatar_field="avatar_128" filters="1"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="duration"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_interventi_intervento_slot_form" model="ir.ui.view">
+        <field name="name">interventi.intervento.slot.form</field>
+        <field name="model">interventi.intervento.slot</field>
+        <field name="arch" type="xml">
+            <form string="Job Slot">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="intervento_id" readonly="1"/>
+                        <field name="partner_id"/>
+                        <field name="user_id" widget="many2one_avatar_user"/>
+                        <field name="is_whole_day" readonly="1"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_interventi_intervento_tree" model="ir.ui.view">
+        <field name="name">interventi.intervento.tree</field>
+        <field name="model">interventi.intervento</field>
+        <field name="arch" type="xml">
+            <list string="Job Requests" default_order="date desc">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="duration" widget="float_time"/>
+                <field name="partner_id"/>
+                <field name="state" widget="badge" decoration-warning="state == 'in_progress'" decoration-success="state == 'done'" decoration-danger="state == 'cancelled'" decoration-info="state == 'draft'"/>
+                <field name="user_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="notes" optional="show"/>
+                <field name="google_maps_link" widget="url" text="Apri Mappa"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_interventi_intervento_form" model="ir.ui.view">
+        <field name="name">interventi.intervento.form</field>
+        <field name="model">interventi.intervento</field>
+        <field name="arch" type="xml">
+            <form string="Job Request">
+                <header>
+                    <button name="%(quick_quotation.action_quick_quotation_dashboard)d"
+                            string=" Quick Quotation"
+                            icon="fa-bolt"
+                            type="action"
+                            class="btn-primary"
+                            context="{'default_partner_id': partner_id}"/>
+                    <button name="action_create_full_quotation"
+                            string=" Full Quotation"
+                            icon="fa-file-text-o"
+                            type="object"
+                            class="btn-secondary"
+                            context="{'default_partner_id': partner_id}"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_sale_order" type="object" class="oe_stat_button" icon="fa-usd" invisible="not sale_order_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Quotation</span>
+                            </div>
+                        </button>
+                    </div>
+                    <field name="sale_order_id" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="is_whole_day"/>
+                            <field name="date"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group>
+                            <field name="google_maps_link" widget="url" text="Apri in Google Maps" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_interventi_intervento_search" model="ir.ui.view">
+        <field name="name">interventi.intervento.search</field>
+        <field name="model">interventi.intervento</field>
+        <field name="arch" type="xml">
+            <search string="Search Job Requests">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="date"/>
+                <filter name="custom_today_filter" string="Today" domain="[('date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <separator/>
+                <filter string="In Progress" name="filter_in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Done" name="filter_done" domain="[('state', '=', 'done')]"/>
+                <filter string="Cancelled" name="filter_cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <group>
+                    <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Employee" name="group_by_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Customer" name="group_by_customer" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_interventi_intervento_kanban" model="ir.ui.view">
+        <field name="name">interventi.intervento.kanban</field>
+        <field name="model">interventi.intervento</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="user_id" class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <field name="date"/>
+                <field name="notes"/>
+                <field name="google_maps_link"/>
+                <templates>
+                    <t t-name="card" class="bg-transparent border-0 shadow-none p-0 mb-4">
+                        <div t-attf-class="oe_kanban_global_click h-100" style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); padding: 15px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                            <div class="o_kanban_record_top mb-2">
+                                <div class="o_kanban_record_headings d-flex justify-content-between align-items-center">
+                                    <strong class="o_kanban_record_title" style="font-size: 1.2rem; color: #2c3e50;"><field name="name"/></strong>
+                                    <div t-attf-class="badge rounded-pill kanban-badge-{{ record.state.raw_value }} px-2 py-1 shadow-sm" style="font-size: 0.75rem;">
+                                        <t t-esc="record.state.value"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa fa-user-circle text-primary me-2"></i>
+                                    <span style="font-weight: 500;"><field name="partner_id"/></span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fa fa-calendar text-info me-2"></i>
+                                    <span class="text-muted"><field name="date"/></span>
+                                </div>
+                                <div t-if="record.notes.raw_value" class="text-muted text-truncate" style="font-size: 0.9rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 5px; margin-top: 5px;">
+                                    <field name="notes"/>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom mt-3 d-flex justify-content-between align-items-center">
+                                <div class="oe_kanban_bottom_left">
+                                     <a t-if="record.google_maps_link.raw_value" t-att-href="record.google_maps_link.raw_value" target="_blank" class="btn btn-sm btn-outline-primary" style="border-radius: 20px;">
+                                         <i class="fa fa-map-marker"></i> Map
+                                     </a>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

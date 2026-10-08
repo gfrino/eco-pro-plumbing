@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="interventi_management.ControlPanel" t-inherit="web.ControlPanel" t-inherit-mode="extension" owl="1">
+        <xpath expr="//nav[hasclass('o_cp_switch_buttons')]" position="inside">
+            <t t-if="env.searchModel and env.searchModel.resModel === 'interventi.intervento'">
+                <button class="btn btn-secondary o_switch_view"
+                        title="Planner"
+                        t-on-click="() => env.services.action.doAction('interventi_management.action_interventi_gantt_dashboard')">
+                    <i class="oi-fw fa fa-tasks"/>
+                </button>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('o_cp_switch_buttons')]/Dropdown/t[@t-set-slot='content']" position="inside">
+            <t t-if="env.searchModel and env.searchModel.resModel === 'interventi.intervento'">
+                <DropdownItem onSelected="() => env.services.action.doAction('interventi_management.action_interventi_gantt_dashboard')">
+                    <i class="oi-fw fa fa-tasks"/>
+                    <span class="ms-1">Planner</span>
+                </DropdownItem>
+            </t>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="quick_quotation.Dashboard">
+        <div class="o_quick_quotation_dashboard">
+            <!-- Background element for visual style -->
+            <div class="qq_background_shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+
+            <div class="qq_main_container">
+                <div class="d-flex w-100 flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                    <button class="btn btn-light qq_home_btn w-100 w-md-auto" t-on-click="() => this.goHome()">
+                        <i class="fa fa-home"></i> Dashboard
+                    </button>
+                    <h1 class="qq_title m-0 text-center">Quick Quotation</h1>
+                    <!-- Customer Selector in Header -->
+                    <div class="qq_customer_selector_container position-relative w-100 w-md-auto" style="max-width: 300px; text-align: left;">
+                        <t t-if="state.selectedCustomer">
+                            <div class="qq_selected_customer d-flex align-items-center justify-content-between p-2 rounded w-100" style="background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.1);">
+                                <div class="text-truncate"><i class="fa fa-user-circle text-primary me-2"></i><strong t-esc="state.selectedCustomer.name"/></div>
+                                <i class="fa fa-times text-danger ms-2" style="cursor: pointer;" t-on-click="clearCustomer" title="Remove"></i>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0"><i class="fa fa-search text-muted"></i></span>
+                                <input type="text" class="form-control border-start-0" placeholder="Search Customer..." t-att-value="state.customerSearchTerm" t-on-input="onCustomerSearch" autocomplete="off"/>
+                            </div>
+                            <!-- Dropdown -->
+                            <div t-if="state.customers.length > 0" class="position-absolute w-100 bg-white border rounded mt-1 shadow-sm" style="z-index: 1000; max-height: 200px; overflow-y: auto; overflow-x: hidden;">
+                                <t t-foreach="state.customers" t-as="c" t-key="c.id">
+                                    <div class="p-2 border-bottom text-dark text-truncate qq_customer_dropdown_item" t-on-click="() => this.selectCustomer(c)" style="cursor: pointer;">
+                                        <t t-esc="c.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <t t-if="state.loading">
+                    <div class="qq_loading">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </t>
+
+                <t t-else="">
+                    <!-- STEP 1: Select Template -->
+                    <t t-if="!state.selectedTemplate">
+                        <p class="qq_subtitle">Select a Quotation Template to begin</p>
+                        <div class="qq_grid">
+                            <t t-foreach="state.templates" t-as="template" t-key="template.id">
+                                <div class="qq_card qq_glass_card" t-on-click="() => this.selectTemplate(template)">
+                                    <t t-if="template.has_image">
+                                        <div class="qq_template_img_wrapper">
+                                            <img t-attf-src="/web/image?model=sale.order.template&amp;id={{template.id}}&amp;field=image_1920" class="qq_template_img" alt="Template"/>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="qq_icon_wrapper">
+                                            <i class="fa fa-file-text-o"></i>
+                                        </div>
+                                    </t>
+                                    <h3><t t-esc="template.name"/></h3>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- STEP 2: Select Version (Good/Better/Best) -->
+                    <t t-if="state.selectedTemplate">
+                        <p class="qq_subtitle">
+                            <button class="btn btn-link qq_back_btn" t-on-click="() => this.goBack()">
+                                <i class="fa fa-arrow-left"></i> Back
+                            </button>
+                            Choose the tier for: <strong t-esc="state.selectedTemplate.name"></strong>
+                        </p>
+                        
+                        <div class="qq_versions_grid">
+                            <div class="qq_card qq_glass_card qq_tier qq_tier_good" t-on-click="() => this.createQuote('good')">
+                                <div class="qq_tier_header">Good</div>
+                                <div class="qq_tier_price mt-2 mb-2" style="font-size: 1.5rem; font-weight: bold; color: inherit;">
+                                    <t t-esc="this.formatCurrency(state.selectedTemplate.good_total)"/>
+                                </div>
+                                <div class="qq_tier_icon"><i class="fa fa-star-o"></i></div>
+                                <div class="qq_tier_desc">Essential products</div>
+                                <div class="qq_product_list mt-3 text-start w-100 ps-2">
+                                    <t t-foreach="state.selectedTemplate.goodLines" t-as="line" t-key="line.id">
+                                        <div class="qq_product_item mb-1"><i class="fa fa-check text-success me-2"></i><t t-esc="line.name or (line.product_id ? line.product_id[1] : '')"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                            
+                            <div class="qq_card qq_glass_card qq_tier qq_tier_better" t-on-click="() => this.createQuote('better')">
+                                <div class="qq_tier_header">Better</div>
+                                <div class="qq_tier_price mt-2 mb-2" style="font-size: 1.5rem; font-weight: bold; color: inherit;">
+                                    <t t-esc="this.formatCurrency(state.selectedTemplate.better_total)"/>
+                                </div>
+                                <div class="qq_tier_icon"><i class="fa fa-star-half-o"></i></div>
+                                <div class="qq_tier_desc">Upgraded experience</div>
+                                <div class="qq_product_list mt-3 text-start w-100 ps-2">
+                                    <t t-foreach="state.selectedTemplate.betterLines" t-as="line" t-key="line.id">
+                                        <div class="qq_product_item mb-1"><i class="fa fa-check text-success me-2"></i><t t-esc="line.name or (line.product_id ? line.product_id[1] : '')"/></div>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <div class="qq_card qq_glass_card qq_tier qq_tier_best" t-on-click="() => this.createQuote('best')">
+                                <div class="qq_tier_header">Best</div>
+                                <div class="qq_tier_price mt-2 mb-2" style="font-size: 1.5rem; font-weight: bold; color: inherit;">
+                                    <t t-esc="this.formatCurrency(state.selectedTemplate.best_total)"/>
+                                </div>
+                                <div class="qq_tier_icon"><i class="fa fa-star"></i></div>
+                                <div class="qq_tier_desc">Premium selection</div>
+                                <div class="qq_product_list mt-3 text-start w-100 ps-2">
+                                    <t t-foreach="state.selectedTemplate.bestLines" t-as="line" t-key="line.id">
+                                        <div class="qq_product_item mb-1"><i class="fa fa-check text-success me-2"></i><t t-esc="line.name or (line.product_id ? line.product_id[1] : '')"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

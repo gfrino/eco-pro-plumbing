@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_quick_quotation_dashboard" model="ir.actions.client">
+        <field name="name">Quick Estimates</field>
+        <field name="tag">quick_quotation.dashboard</field>
+        <field name="target">fullscreen</field>
+    </record>
+
+    <menuitem id="menu_quick_quotation_root"
+              name="Quick Estimates"
+              web_icon="quick_quotation,static/description/icon.png"
+              sequence="100"
+              action="action_quick_quotation_dashboard"/>
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_quick_quotation_signature_wizard_form" model="ir.ui.view">
+        <field name="name">quick.quotation.signature.wizard.form</field>
+        <field name="model">quick_quotation.signature.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sign Quotation">
+                <group>
+                    <field name="template_id" invisible="1"/>
+                    <field name="version" invisible="1"/>
+                    <field name="partner_id" options="{'no_create': True}" readonly="context.get('default_partner_id')"/>
+                    <field name="signed_by" placeholder="Customer Name..."/>
+                    <field name="signature" widget="inline_signature"/>
+                </group>
+                <div class="mt-3 mb-0 text-muted" style="font-size: 0.85rem; line-height: 1.4; border-top: 1px solid #eee; padding-top: 10px;">
+                    <em>By drawing my signature and clicking 'Sign &amp; Confirm', I agree that my electronic signature is the legally binding equivalent to my handwritten signature. I consent to be legally bound by this agreement's terms and conditions and agree to conduct business electronically in accordance with the U.S. Electronic Signatures in Global and National Commerce Act (E-Sign Act) and the Uniform Electronic Transactions Act (UETA).</em>
+                </div>
+                <footer>
+                    <button string="Sign &amp; Confirm" type="object" name="action_confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

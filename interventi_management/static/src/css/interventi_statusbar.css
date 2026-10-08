@@ -1,0 +1,40 @@
+/* Custom statusbar colors for interventi */
+
+/* In Progress */
+.o_statusbar_status .o_arrow_button.o_arrow_button_current[data-value="in_progress"] {
+    --o-statusbar-background-active: #ffc107 !important;
+    --o-statusbar-border-active: #e0a800 !important;
+    color: #333 !important;
+}
+
+/* Done */
+.o_statusbar_status .o_arrow_button.o_arrow_button_current[data-value="done"] {
+    --o-statusbar-background-active: #28a745 !important;
+    --o-statusbar-border-active: #218838 !important;
+    color: white !important;
+}
+
+/* Cancelled */
+.o_statusbar_status .o_arrow_button.o_arrow_button_current[data-value="cancelled"] {
+    --o-statusbar-background-active: #dc3545 !important;
+    --o-statusbar-border-active: #c82333 !important;
+    color: white !important;
+}
+
+/* Custom Kanban Badges */
+.o_kanban_record .kanban-badge-in_progress {
+    background-color: #f59e0b !important;
+    color: #000 !important;
+}
+.o_kanban_record .kanban-badge-done {
+    background-color: #10b981 !important;
+    color: #fff !important;
+}
+.o_kanban_record .kanban-badge-draft {
+    background-color: #6c757d !important;
+    color: #fff !important;
+}
+.o_kanban_record .kanban-badge-cancelled {
+    background-color: #ef4444 !important;
+    color: #fff !important;
+}

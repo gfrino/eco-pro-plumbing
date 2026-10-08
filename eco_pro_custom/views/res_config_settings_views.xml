@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_eco_pro" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.eco.pro</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='invoicing_settings']" position="inside">
+                <setting id="cc_fee_setting" string="Credit Card Fee" help="Automatically add a credit card fee to invoices">
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label for="cc_fee_percentage" class="col-lg-4 o_light_label"/>
+                            <field name="cc_fee_percentage" class="col-lg-8"/>
+                        </div>
+                        <div class="row">
+                            <label for="cc_fee_product_id" class="col-lg-4 o_light_label"/>
+                            <field name="cc_fee_product_id" class="col-lg-8"/>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

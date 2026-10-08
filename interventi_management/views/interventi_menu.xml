@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_interventi_intervento" model="ir.actions.act_window">
+        <field name="name">All Jobs (List/Kanban)</field>
+        <field name="res_model">interventi.intervento</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_interventi_slot_calendar" model="ir.actions.act_window">
+        <field name="name">Job Calendar</field>
+        <field name="res_model">interventi.intervento.slot</field>
+        <field name="view_mode">calendar</field>
+    </record>
+
+    <record id="action_interventi_gantt_dashboard" model="ir.actions.client">
+        <field name="name">Planner</field>
+        <field name="tag">interventi_gantt_dashboard</field>
+    </record>
+
+    <menuitem id="menu_interventi_root"
+              name="Job Requests"
+              sequence="50"
+              action="action_interventi_slot_calendar"
+              web_icon="interventi_management,static/description/icon.png"/>
+              
+    <menuitem id="menu_interventi_calendar" name="Job Calendar" parent="menu_interventi_root" action="action_interventi_slot_calendar" sequence="1"/>
+    <menuitem id="menu_interventi_list" name="All Jobs" parent="menu_interventi_root" action="action_interventi_intervento" sequence="5"/>
+    <menuitem id="menu_interventi_gantt" name="Planner" parent="menu_interventi_root" action="action_interventi_gantt_dashboard" sequence="10"/>
+
+    <record id="view_interventi_users_tree" model="ir.ui.view">
+        <field name="name">res.users.tree.interventi</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list string="Employees Color Mapping" editable="bottom" create="false" delete="false">
+                <field name="name" readonly="1"/>
+                <field name="login" readonly="1"/>
+                <field name="color" widget="color_picker"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_interventi_employees" model="ir.actions.act_window">
+        <field name="name">Employees (Colors)</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_interventi_users_tree"/>
+        <field name="domain">[('share', '=', False)]</field>
+    </record>
+
+    <menuitem id="menu_interventi_settings" name="Settings" parent="menu_interventi_root" sequence="100"/>
+    <menuitem id="menu_interventi_employees" name="Employees Color Mapping" parent="menu_interventi_settings" action="action_interventi_employees" sequence="10"/>
+</odoo>

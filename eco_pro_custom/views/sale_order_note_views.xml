@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dialog with the rich-text editor for a note line -->
+    <record id="view_sale_order_line_note_form" model="ir.ui.view">
+        <field name="name">sale.order.line.note.form.eco</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <form string="Format Note">
+                <field name="display_type" invisible="1"/>
+                <div class="text-muted mb-2">
+                    Select text to make it bold, change colour or size, add lists or links.
+                    This is how the note appears on the quotation PDF and online.
+                </div>
+                <field name="note_html" nolabel="1" class="oe-bordered-editor"
+                       options="{'height': 260}" placeholder="Write your note…"/>
+                <footer>
+                    <button string="Save" special="save" class="btn-primary"/>
+                    <button string="Discard" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_order_form_note_html" model="ir.ui.view">
+        <field name="name">sale.order.form.eco.note.html</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Order line list: a "Format" button on note lines -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='name']" position="after">
+                <field name="note_html" column_invisible="True"/>
+                <button name="action_eco_format_note" type="object" icon="fa-paint-brush"
+                        title="Format note (bold, colours, lists…)"
+                        invisible="display_type != 'line_note'"/>
+            </xpath>
+            <!-- Order line form (mobile / kanban): rich editor for notes -->
+            <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="attributes">
+                <attribute name="invisible">display_type == 'line_note'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+                <field name="note_html" nolabel="1" invisible="display_type != 'line_note'"
+                       placeholder="Write your note…"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quotation PDF -->
+    <template id="report_saleorder_document_note_html" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//tr[@name='tr_note']/td[@name='td_note_name']/span[@t-field='line.name']" position="replace">
+            <div class="o_eco_note" t-out="line._eco_note_display()"/>
+        </xpath>
+    </template>
+
+    <!-- Customer portal -->
+    <template id="sale_order_portal_content_note_html" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//tr[@name='tr_note']/td[@name='td_note_name']/span[@t-field='line.name']" position="replace">
+            <div class="o_eco_note" t-out="line._eco_note_display()"/>
+        </xpath>
+    </template>
+</odoo>

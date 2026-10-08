@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quick_quotation_sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">sale.order.template.form.inherit.quick_quote</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Dashboard Image">
+                    <group>
+                        <field name="image_1920" widget="image" options="{'size': [256, 256]}" class="oe_left"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

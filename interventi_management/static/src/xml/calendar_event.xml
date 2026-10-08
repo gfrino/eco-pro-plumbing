@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web.CalendarCommonRenderer.event" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('o_event_title')]" position="before">
+            <t t-if="rawRecord and rawRecord.state and (rawRecord.state === 'in_progress' or rawRecord.state === 'done' or rawRecord.state === 'cancelled')">
+                <span t-attf-class="badge rounded-pill float-end {{ rawRecord.state === 'in_progress' ? 'bg-warning text-dark' : (rawRecord.state === 'done' ? 'bg-success' : 'bg-danger') }}" style="font-size: 0.75em; padding: 0.4em 0.8em; margin-top: 2px; margin-right: 2px;">
+                    <t t-esc="rawRecord.state === 'in_progress' ? 'In Progress' : (rawRecord.state === 'done' ? 'Done' : 'Cancelled')"/>
+                </span>
+            </t>
+        </xpath>
+    </t>
+</templates>

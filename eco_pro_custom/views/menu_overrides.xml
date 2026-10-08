@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale.sale_menu_root" model="ir.ui.menu">
+        <field name="name">Estimates</field>
+    </record>
+</odoo>

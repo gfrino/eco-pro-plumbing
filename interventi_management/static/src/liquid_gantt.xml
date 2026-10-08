@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="interventi_management.LiquidGanttDashboard">
+        <div class="o_action d-flex flex-column h-100">
+            <div t-attf-class="liquid-gantt-container mode-{{state.mode}} {{ state.isDragging ? 'is-dragging' : '' }} d-flex flex-column flex-grow-1 overflow-hidden">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex align-items-center">
+                        <h2 class="m-0 text-primary fw-bold me-4" style="font-size: 1.8rem; letter-spacing: -0.5px;">Planner</h2>
+                        <button class="btn btn-primary shadow rounded-pill px-4 fw-bold" t-on-click="createNewJob" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border: none;">
+                            <i class="fa fa-plus me-2"></i> New Job
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="form-check form-switch me-4 d-flex align-items-center">
+                            <input class="form-check-input mt-0 me-2" type="checkbox" id="weekendToggle" style="cursor: pointer; width: 2.5em; height: 1.2em;" t-att-checked="state.showWeekends" t-on-change="onWeekendToggle"/>
+                            <label class="form-check-label fw-bold text-muted mt-1" for="weekendToggle" style="cursor: pointer; font-size: 0.85rem;">W/End</label>
+                        </div>
+                        <div class="btn-group me-3 shadow-sm rounded-pill bg-white border">
+                            <button t-attf-class="btn {{ state.mode === 'day' ? 'btn-primary' : 'btn-light border-0' }} rounded-start-pill px-3" t-on-click="() => this.setMode('day')">Day</button>
+                            <button t-attf-class="btn {{ state.mode === 'week' ? 'btn-primary' : 'btn-light border-0' }} px-3" t-on-click="() => this.setMode('week')">Week</button>
+                            <button t-attf-class="btn {{ state.mode === 'month' ? 'btn-primary' : 'btn-light border-0' }} rounded-end-pill px-3" t-on-click="() => this.setMode('month')">Month</button>
+                        </div>
+                        <button class="btn btn-light rounded-pill px-4 shadow-sm me-2" t-on-click="prev">
+                            <i class="fa fa-chevron-left me-2"></i> Prev
+                        </button>
+                        <button class="btn btn-light rounded-pill px-4 shadow-sm" t-on-click="next">
+                            Next <i class="fa fa-chevron-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="liquid-gantt-board">
+                    <div class="gantt-header">
+                        <!-- Empty corner for the Day column -->
+                        <div class="gantt-corner-header text-muted text-uppercase fw-bold" style="font-size: 0.8rem;">
+                            <t t-esc="state.mode === 'day' ? 'Time' : 'Employee'"/>
+                        </div>
+                        <t t-if="xAxisItems.length === 0">
+                            <div class="gantt-emp-header text-muted justify-content-center">
+                                <t t-if="state.mode === 'day'">
+                                    <span class="d-block fw-bold text-dark mb-1" style="font-size: 1.1rem;"><t t-esc="state.startDate.toLocaleDateString('en-US', {weekday: 'short', day: 'numeric', month: 'short'})"/></span>
+                                    <span style="font-size: 0.85rem;">No scheduled jobs</span>
+                                </t>
+                                <t t-else="">
+                                    No Data
+                                </t>
+                            </div>
+                        </t>
+                        <t t-foreach="xAxisItems" t-as="x" t-key="x.id !== undefined ? x.id : x.date.getTime()">
+                            <div class="gantt-emp-header">
+                                <t t-if="state.mode === 'day'">
+                                    <!-- x is an employee -->
+                                    <t t-if="x.id">
+                                        <img t-attf-src="/web/image?model=res.users&amp;id={{x.id}}&amp;field=avatar_128" class="rounded-circle mb-2 shadow-sm" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid white;"/>
+                                    </t>
+                                    <t t-else="">
+                                        <i class="fa fa-user-circle text-primary mb-2" style="font-size: 1.8rem; opacity: 0.8;"></i>
+                                    </t>
+                                    <span class="d-block text-center fw-bold text-truncate" style="font-size: 0.9rem; color: #2d3748; width: 100%;"><t t-esc="x.name"/></span>
+                                    <span class="d-block text-center text-muted mt-1 mb-1" style="font-size: 0.75rem;"><t t-esc="state.startDate.toLocaleDateString('en-US', {weekday: 'short', day: 'numeric', month: 'short'})"/></span>
+                                    <t t-if="x.capacity_hours">
+                                        <div class="progress w-100 shadow-sm" style="height: 8px; border-radius: 4px; background-color: #e2e8f0;">
+                                            <div t-attf-class="progress-bar {{ x.allocated_hours >= x.capacity_hours ? 'bg-danger' : (x.allocated_hours > x.capacity_hours * 0.8 ? 'bg-warning' : 'bg-success') }}"
+                                                 t-attf-style="width: {{ Math.min((x.allocated_hours / x.capacity_hours) * 100, 100) }}%; border-radius: 4px;"/>
+                                        </div>
+                                        <div class="text-center mt-1" style="font-size: 0.7rem; color: #718096;">
+                                            <t t-esc="Math.round(x.allocated_hours)"/> / <t t-esc="Math.round(x.capacity_hours)"/>h
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <!-- x is a timeslot -->
+                                    <span class="d-block text-uppercase" style="font-size: 0.75rem; color: #4a5568;"><t t-esc="x.sublabel"/></span>
+                                    <span style="font-size: 1.1rem; color: #2d3748;"><t t-esc="x.label"/></span>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                    
+                    <div class="gantt-body">
+                        <t t-if="yAxisItems.length === 0">
+                            <div class="p-5 text-center text-muted">No Data found for this period.</div>
+                        </t>
+                        <t t-foreach="yAxisItems" t-as="y" t-key="y.id !== undefined ? y.id : y.date.getTime()">
+                            <div class="gantt-row" t-attf-style="min-height: {{ getRowHeight(y) }};">
+                                <!-- Row header -->
+                                <div class="gantt-day-label">
+                                    <t t-if="state.mode === 'day'">
+                                        <div class="fw-bold"><t t-esc="y.label"/></div>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-if="y.id">
+                                            <img t-attf-src="/web/image?model=res.users&amp;id={{y.id}}&amp;field=avatar_128" class="rounded-circle mb-2 shadow-sm" style="width: 35px; height: 35px; object-fit: cover;"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div class="rounded-circle mb-2 bg-light d-flex align-items-center justify-content-center shadow-sm" style="width: 35px; height: 35px;">
+                                                <i class="fa fa-user text-muted"></i>
+                                            </div>
+                                        </t>
+                                        <div class="fw-bold text-truncate w-100 px-2" style="font-size: 0.8rem;"><t t-esc="y.name"/></div>
+                                        <div class="progress mt-2 mx-auto" style="height: 4px; width: 80%;">
+                                            <div t-attf-class="progress-bar {{ y.allocated_hours >= y.capacity_hours ? 'bg-danger' : (y.allocated_hours > y.capacity_hours * 0.8 ? 'bg-warning' : 'bg-success') }}" 
+                                                 t-attf-style="width: {{ Math.min(100, Math.round((y.allocated_hours / Math.max(1, y.capacity_hours)) * 100)) }}%" 
+                                                 role="progressbar"></div>
+                                        </div>
+                                        <div class="text-muted mt-1" style="font-size: 0.65rem;">
+                                            <t t-esc="Math.round(y.allocated_hours)"/> / <t t-esc="Math.round(y.capacity_hours)"/>h
+                                        </div>
+                                    </t>
+                                </div>
+                                
+                                <!-- Grid and Tasks container -->
+                                <div class="d-flex flex-grow-1 position-relative w-100">
+                                    <!-- Columns Grid -->
+                                    <t t-foreach="xAxisItems" t-as="x" t-key="x.id !== undefined ? x.id : x.date.getTime()">
+                                        <div class="gantt-cell flex-grow-1" t-on-dragover="onDragOver" t-on-dragenter="onDragEnter" t-on-dragleave="onDragLeave" t-on-drop="(ev) => this.onDrop(ev, y, x)">
+                                            <!-- Day mode uses cells -->
+                                            <t t-if="state.mode === 'day'">
+                                                <div class="gantt-cards-container position-relative w-100 h-100">
+                                                    <t t-foreach="getInterventionsForCell(y, x)" t-as="inv" t-key="inv.id">
+                                                        <div t-attf-class="gantt-card position-absolute w-100 overflow-hidden rounded-1"
+                                                             t-attf-style="pointer-events: auto; z-index: 10; border: 1px solid {{ inv.colorHex }}33 !important; background: linear-gradient(to right, {{ inv.colorHex }}1A, {{ inv.colorHex }}05) !important; height: {{ (inv.duration * 60) - 4 }}px; top: {{ getMinutesOffset(inv.date) }}px; cursor: pointer; padding: 4px 6px;"
+                                                             draggable="true" 
+                                                             t-on-dragstart="(ev) => this.onDragStart(ev, inv.id)" 
+                                                             t-on-dragend="onDragEnd" 
+                                                             t-on-click="() => this.openIntervention(inv.id)" 
+                                                             t-att-title="inv.name + ' - ' + (inv.partner_id ? inv.partner_id[1] : '')">
+                                                            
+                                                            <div class="d-flex justify-content-between align-items-start w-100 mb-1">
+                                                                <span class="fw-bold text-dark text-truncate" style="font-size: 0.85rem;">
+                                                                    <t t-esc="inv.partner_id ? inv.partner_id[1] : inv.name"/>
+                                                                </span>
+                                                                <span class="badge bg-light text-secondary rounded-1 border ms-2 flex-shrink-0" style="font-size: 0.65rem;"><t t-esc="formatTime(inv.date)"/></span>
+                                                            </div>
+                                                            
+                                                            <div class="d-flex justify-content-between align-items-center mt-1">
+                                                                <div class="text-dark text-truncate" style="font-size: 0.8rem; font-weight: 600;">
+                                                                    <t t-esc="formatTimeRange(inv.date, inv.duration)"/>
+                                                                </div>
+                                                                
+                                                                <t t-if="inv.state === 'in_progress'">
+                                                                    <div title="In Progress" style="width: 14px; height: 14px; border-radius: 50%; background-color: #f59e0b;" class="ms-1 flex-shrink-0 shadow-sm border border-white"></div>
+                                                                </t>
+                                                                <t t-elif="inv.state === 'done'">
+                                                                    <div title="Done" style="width: 14px; height: 14px; border-radius: 50%; background-color: #10b981;" class="ms-1 flex-shrink-0 shadow-sm border border-white"></div>
+                                                                </t>
+                                                                <t t-elif="inv.state === 'cancelled'">
+                                                                    <div title="Cancelled" style="width: 14px; height: 14px; border-radius: 50%; background-color: #ef4444;" class="ms-1 flex-shrink-0 shadow-sm border border-white"></div>
+                                                                </t>
+                                                            </div>
+                                                            
+                                                            <div class="gantt-resize-handle" t-on-mousedown="(ev) => this.onResizeStart(ev, inv.id)"></div>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    
+                                    <!-- Absolute layer for Week/Month mode -->
+                                    <t t-if="state.mode !== 'day'">
+                                        <div class="position-absolute w-100 h-100" style="pointer-events: none; left: 0; top: 0;">
+                                            <t t-foreach="getGanttTasksForRow(y)" t-as="task" t-key="task.inv.id">
+                                                <div t-attf-class="gantt-card position-absolute overflow-hidden rounded-1"
+                                                     t-attf-style="pointer-events: auto; z-index: 10; cursor: pointer; border: 1px solid {{ task.inv.colorHex }}33 !important; background: linear-gradient(to right, {{ task.inv.colorHex }}1A, {{ task.inv.colorHex }}05) !important; padding: 0 8px; left: {{task.left}}%; width: calc({{task.width}}% - 4px); top: {{task.track * 45 + 5}}px; height: 35px; {{ task.is_partial ? 'opacity: 0.8;' : '' }}"
+                                                     draggable="true" 
+                                                     t-on-dragstart="(ev) => this.onDragStart(ev, task.inv.id)" 
+                                                     t-on-dragend="onDragEnd" 
+                                                     t-on-click="() => this.openIntervention(task.inv.id)" 
+                                                     t-att-title="task.inv.name + ' - ' + (task.inv.partner_id ? task.inv.partner_id[1] : '')">
+                                                    
+                                                    <div class="d-flex justify-content-between align-items-center w-100 h-100">
+                                                        <div class="d-flex align-items-center text-truncate" style="flex-grow: 1;">
+                                                            <span class="fw-bold text-dark text-truncate me-2" style="font-size: 0.85rem;">
+                                                                <t t-esc="task.inv.partner_id ? task.inv.partner_id[1] : task.inv.name"/>
+                                                            </span>
+
+                                                        </div>
+                                                        <div class="d-flex align-items-center flex-shrink-0">
+                                                            <span class="text-dark fw-bold me-2" style="font-size: 0.75rem;"><t t-esc="formatTimeRange(task.inv.date, task.inv.duration)"/></span>
+                                                            <t t-if="task.inv.state === 'in_progress'">
+                                                                <div title="In Progress" style="width: 14px; height: 14px; border-radius: 50%; background-color: #f59e0b;" class="shadow-sm border border-white"></div>
+                                                            </t>
+                                                            <t t-elif="task.inv.state === 'done'">
+                                                                <div title="Done" style="width: 14px; height: 14px; border-radius: 50%; background-color: #10b981;" class="shadow-sm border border-white"></div>
+                                                            </t>
+                                                            <t t-elif="task.inv.state === 'cancelled'">
+                                                                <div title="Cancelled" style="width: 14px; height: 14px; border-radius: 50%; background-color: #ef4444;" class="shadow-sm border border-white"></div>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

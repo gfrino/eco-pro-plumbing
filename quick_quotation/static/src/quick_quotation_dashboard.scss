@@ -1,0 +1,241 @@
+// Glassmorphism Liquid Glass Styles
+.o_quick_quotation_dashboard {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100%;
+    overflow: auto;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: 3rem;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
+
+    // Background floating shapes
+    .qq_background_shapes {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        overflow: hidden;
+        z-index: 0;
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: qqFloat 15s infinite ease-in-out;
+            opacity: 0.8;
+        }
+        .shape-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: rgba(116, 156, 252, 0.4); }
+        .shape-2 { width: 400px; height: 400px; bottom: -50px; right: -50px; background: rgba(226, 186, 255, 0.4); animation-delay: -5s; }
+        .shape-3 { width: 300px; height: 300px; top: 40%; left: 40%; background: rgba(144, 238, 144, 0.3); animation-delay: -10s; }
+    }
+
+    .qq_main_container {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .qq_title {
+            font-size: 3rem;
+            @media (max-width: 768px) {
+                font-size: 2rem;
+            }
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .qq_subtitle {
+            font-size: 1.25rem;
+            color: #5a6c82;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+    }
+
+    .qq_glass_card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        border-radius: 24px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        padding: 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .qq_icon_wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #5e72e4;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.5), 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .qq_template_img_wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .qq_template_img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        
+        .qq_customer_dropdown_item {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            &:hover {
+                background-color: #f0f4f8;
+            }
+        }
+    }
+
+    .qq_grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .qq_versions_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        width: 100%;
+        max-width: 1100px;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        // Distinct colors for tiers
+        .qq_tier_good .qq_tier_header, .qq_tier_good .qq_tier_icon { color: #f39c12; }
+        .qq_tier_better .qq_tier_header, .qq_tier_better .qq_tier_icon { color: #3498db; }
+        .qq_tier_best .qq_tier_header, .qq_tier_best .qq_tier_icon { color: #9b59b6; }
+
+        .qq_tier_header {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .qq_tier_icon {
+            font-size: 4rem;
+            margin: 1.5rem 0;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .qq_tier_desc {
+            font-size: 1.1rem;
+            color: #556;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 20px;
+        }
+    }
+
+    .qq_loading {
+        margin-top: 5rem;
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    .qq_back_btn {
+        margin-right: 15px;
+        color: #5e72e4;
+        font-weight: 600;
+        text-decoration: none;
+        background: rgba(255,255,255,0.5);
+        border-radius: 20px;
+        padding: 5px 15px;
+        
+        &:hover {
+            color: #324cdd;
+            background: rgba(255,255,255,0.8);
+        }
+    }
+
+    .qq_home_btn {
+        background: rgba(255,255,255,0.7);
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 20px;
+        color: #2c3e50;
+        font-weight: 600;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+        z-index: 10;
+        
+        &:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+    }
+
+    .qq_product_list {
+        border-top: 1px solid rgba(255,255,255,0.3);
+        padding-top: 1rem;
+        
+        .qq_product_item {
+            font-size: 0.95rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+    }
+}
+
+@keyframes qqFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}

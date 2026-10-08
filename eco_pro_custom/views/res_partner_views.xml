@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_marketing" model="ir.ui.view">
+        <field name="name">res.partner.form.eco.marketing</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']" position="inside">
+                <group string="Marketing" name="eco_marketing">
+                    <field name="campaign_id" options="{'no_create_edit': True}"/>
+                    <field name="medium_id" options="{'no_create_edit': True}"/>
+                    <field name="source_id" options="{'no_create_edit': True}"/>
+                    <field name="referred"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_tree_marketing" model="ir.ui.view">
+        <field name="name">res.partner.list.eco.marketing</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="source_id" optional="hide"/>
+                <field name="medium_id" optional="hide"/>
+                <field name="campaign_id" optional="hide"/>
+                <field name="referred" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_marketing" model="ir.ui.view">
+        <field name="name">res.partner.search.eco.marketing</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="source_id"/>
+                <field name="medium_id"/>
+                <field name="campaign_id"/>
+                <field name="referred"/>
+            </xpath>
+            <xpath expr="//group[@name='group_by']" position="inside">
+                <filter name="group_source" string="Source" context="{'group_by': 'source_id'}"/>
+                <filter name="group_medium" string="Medium" context="{'group_by': 'medium_id'}"/>
+                <filter name="group_campaign" string="Campaign" context="{'group_by': 'campaign_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
