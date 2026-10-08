@@ -54,7 +54,8 @@
                                 <t t-esc="' ' + activityTitle(activity)"/>
                             </div>
                             <div class="small text-muted text-truncate">
-                                <a href="#" t-on-click.prevent="() => this.openProject(activity.project[0])" t-esc="activity.project[1]"/>
+                                <a t-if="activity.project" href="#" t-on-click.prevent="() => this.openProject(activity.project[0])" t-esc="activity.project[1]"/>
+                                <span t-else="" class="fst-italic">No project</span>
                                 · <t t-esc="relativeTime(activity.when)"/>
                             </div>
                         </div>
@@ -93,7 +94,8 @@
                     <img t-else="" t-key="photo.id" t-att-src="photoImageUrl(photo, true)" t-att-alt="photo.name"/>
                 </div>
                 <div class="o_ccf_lb_info">
-                    <div class="fw-bold" t-esc="photo.project_id[1]"/>
+                    <div class="fw-bold" t-if="photo.project_id" t-esc="photo.project_id[1]"/>
+                    <div class="fw-bold fst-italic" t-else="">No project</div>
                     <div class="small opacity-75">
                         <t t-esc="photo.user_id ? photo.user_id[1] : ''"/> · <t t-esc="photoTime(photo)"/>
                         <a t-if="photo.has_location" t-att-href="photo.map_url" target="_blank" class="ms-2 text-white">

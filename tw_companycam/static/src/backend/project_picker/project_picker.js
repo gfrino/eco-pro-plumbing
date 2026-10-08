@@ -12,6 +12,7 @@ export class ProjectPickerDialog extends Component {
         close: Function,
         onSelect: Function,
         currentId: { type: [Number, { value: null }], optional: true },
+        allowNone: { type: Boolean, optional: true },
     };
 
     setup() {
@@ -59,7 +60,7 @@ export class ProjectPickerDialog extends Component {
     }
 
     select(project) {
-        this.props.onSelect({ id: project.id, name: project.name });
+        this.props.onSelect(project ? { id: project.id, name: project.name } : null);
         this.props.close();
     }
 

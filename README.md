@@ -8,7 +8,7 @@ added as-is to the Odoo `addons_path`.
 
 | Module | Version | Description |
 | --- | --- | --- |
-| [`tw_companycam`](tw_companycam) | 19.0.1.0.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
+| [`tw_companycam`](tw_companycam) | 19.0.1.1.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
 | [`eco_pro_custom`](eco_pro_custom) | 19.0.1.3.0 | **Eco Pro Customizations** – Job Location / EIN labels, credit-card fee, "Estimates" menu, marketing tab on contacts (pre-filled on quotations), formatted quotation notes |
 | [`interventi_management`](interventi_management) | 19.0.1.2.0 | **Job Requests** – plan job requests quickly from contacts |
 | [`quick_quotation`](quick_quotation) | 1.0 | **Quick Estimates** – dashboard to build estimates fast from Good/Better/Best templates |
@@ -55,6 +55,8 @@ Access groups: *CompanyCam / User* (users delete only their own captures) and
 ## Changelog
 
 - **interventi_management 19.0.1.2.0** – Job Requests get the chatter (attachments, notes, activities, status change log): technicians and office staff could not attach photos or documents to a job.
+- **tw_companycam 19.0.1.1.0** – Project is optional: the camera opens straight away and photos
+  can be filed in a project later (filter *Without project*), so a quick shot is never blocked.
 - **tw_companycam 19.0.1.0.0** – First release.
 - **eco_pro_custom 19.0.1.3.0** – Marketing fields in their own contact tab; quotations pre-fill Source / Medium / Campaign / Referred By from the customer: enter the origin once, reuse it on every sale.
 - **eco_pro_custom 19.0.1.2.0** – Formatted (rich-text) note lines in quotations, shown on PDF and portal: the client needs highlighted notes between products.

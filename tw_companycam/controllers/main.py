@@ -21,15 +21,17 @@ class CompanyCamController(http.Controller):
     # Camera upload (logged-in users)
     # ------------------------------------------------------------------
     @http.route('/companycam/upload', type='http', auth='user', methods=['POST'])
-    def companycam_upload(self, project_id, media_type='photo', ufile=None, poster=None,
+    def companycam_upload(self, project_id=None, media_type='photo', ufile=None, poster=None,
                           captured_at=None, latitude=None, longitude=None, accuracy=None,
                           tag_ids=None, duration=None, dual=None, **kw):
         if not ufile or media_type not in ('photo', 'video'):
             raise BadRequest(_('Nothing to upload.'))
-        project = request.env['project.project'].browse(int(project_id)).exists()
-        if not project:
-            raise NotFound()
-        project.check_access('read')
+        project = request.env['project.project']
+        if project_id and str(project_id).isdigit():
+            project = project.browse(int(project_id)).exists()
+            if not project:
+                raise NotFound()
+            project.check_access('read')
 
         capture_uid = (kw.get('capture_uid') or '')[:64]
         if capture_uid:
@@ -43,7 +45,7 @@ class CompanyCamController(http.Controller):
             raise BadRequest(_('The file is empty or too large.'))
 
         vals = {
-            'project_id': project.id,
+            'project_id': project.id or False,
             'media_type': media_type,
             'captured_at': self._parse_client_datetime(captured_at),
             'latitude': self._to_float(latitude),

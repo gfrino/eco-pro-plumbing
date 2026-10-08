@@ -33,7 +33,10 @@
                             <field name="starred" widget="boolean_favorite" nolabel="1" class="o_companycam_star"/>
                         </div>
                         <div class="px-2 py-2">
-                            <div class="fw-bold text-truncate"><field name="project_id"/></div>
+                            <div class="fw-bold text-truncate">
+                                <field name="project_id"/>
+                                <span t-if="!record.project_id.raw_value" class="text-muted fw-normal fst-italic">No project</span>
+                            </div>
                             <div class="d-flex align-items-center gap-1 small text-muted">
                                 <field name="user_id" widget="many2one_avatar_user"/>
                                 <span class="ms-auto"><field name="captured_at" widget="datetime" options="{'show_seconds': False}"/></span>
@@ -102,7 +105,8 @@
                     <field name="description" placeholder="Add a caption: what does this photo show?"/>
                     <group>
                         <group>
-                            <field name="project_id" options="{'no_quick_create': True}"/>
+                            <field name="project_id" options="{'no_quick_create': True}"
+                                   placeholder="No project: choose one to file this photo"/>
                             <field name="partner_id" invisible="not partner_id"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"
                                    placeholder="Before, After, Damage..."/>
@@ -148,6 +152,7 @@
                 <field name="user_id"/>
                 <filter name="my_captures" string="My captures" domain="[('user_id', '=', uid)]"/>
                 <filter name="starred" string="Starred" domain="[('starred', '=', True)]"/>
+                <filter name="no_project" string="Without project" domain="[('project_id', '=', False)]"/>
                 <separator/>
                 <filter name="photos" string="Photos" domain="[('media_type', '=', 'photo')]"/>
                 <filter name="videos" string="Videos" domain="[('media_type', '=', 'video')]"/>

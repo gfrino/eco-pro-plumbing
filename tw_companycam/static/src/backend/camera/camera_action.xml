@@ -69,8 +69,8 @@
                 </div>
                 <div class="o_cc_controls">
                     <div class="o_cc_side">
-                        <button class="o_cc_last" t-on-click="openProjectPhotos" title="Photos of this project"
-                                aria-label="Photos of this project">
+                        <button class="o_cc_last" t-on-click="openProjectPhotos" title="Photos and videos"
+                                aria-label="Photos and videos">
                             <img t-if="lastCapture and lastCapture.previewUrl" t-att-src="lastCapture.previewUrl" alt=""/>
                             <i t-else="" class="fa fa-picture-o"/>
                             <span t-if="pendingCount" class="o_cc_count" t-att-class="{ 'o_cc_count_warn': !state.online }"
@@ -83,7 +83,7 @@
                     </div>
                     <button class="o_cc_shutter" t-on-click="onShutter"
                             t-att-class="{ 'o_cc_shutter_video': state.mode !== 'photo', 'o_cc_shutter_stop': state.recording }"
-                            t-att-disabled="state.project and !state.ready"
+                            t-att-disabled="!state.ready"
                             t-att-title="shutterLabel" t-att-aria-label="shutterLabel">
                         <span/>
                     </button>

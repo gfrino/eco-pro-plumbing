@@ -174,6 +174,9 @@ export class CompanyCamFeed extends Component {
     }
 
     async openProject(projectId) {
+        if (!projectId) {
+            return;
+        }
         const action = await this.orm.call("project.project", "action_companycam_view_photos", [[projectId]]);
         this.action.doAction(action);
     }

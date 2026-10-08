@@ -27,7 +27,9 @@ export function newCaptureUid() {
 export async function uploadCapture(item) {
     const form = new FormData();
     form.append("csrf_token", odoo.csrf_token);
-    form.append("project_id", item.projectId);
+    if (item.projectId) {
+        form.append("project_id", item.projectId);
+    }
     form.append("media_type", item.mediaType);
     form.append("capture_uid", item.uid);
     form.append("captured_at", String(item.capturedAt));

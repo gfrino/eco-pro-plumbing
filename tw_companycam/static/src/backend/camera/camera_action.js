@@ -94,9 +94,6 @@ export class CompanyCamCamera extends Component {
             this.watchLocation();
             await this.restorePendingCaptures();
             await this.startCamera();
-            if (!this.state.project) {
-                this.chooseProject();
-            }
         });
 
         onWillUnmount(() => {
@@ -146,7 +143,7 @@ export class CompanyCamCamera extends Component {
     }
 
     get projectLabel() {
-        return this.state.project ? this.state.project.name : _t("Choose a project");
+        return this.state.project ? this.state.project.name : _t("No project");
     }
 
     get shutterLabel() {
@@ -293,10 +290,6 @@ export class CompanyCamCamera extends Component {
     // Capture
     // ------------------------------------------------------------------
     onShutter() {
-        if (!this.state.project) {
-            this.chooseProject();
-            return;
-        }
         if (this.state.mode === "photo") {
             this.takePhoto();
         } else if (this.state.recording) {
@@ -439,10 +432,6 @@ export class CompanyCamCamera extends Component {
     }
 
     openUpload() {
-        if (!this.state.project) {
-            this.chooseProject();
-            return;
-        }
         this.fileRef.el.click();
     }
 
@@ -515,8 +504,7 @@ export class CompanyCamCamera extends Component {
             filename,
             duration: duration || 0,
             dual: Boolean(dual),
-            projectId: this.state.project.id,
-            projectName: this.state.project.name,
+            projectId: this.state.project?.id || null,
             capturedAt: capturedAt || Date.now(),
             location: noLocation || !this.state.location ? null : { ...this.state.location },
             tagIds: [...this.state.selectedTagIds],
@@ -607,9 +595,10 @@ export class CompanyCamCamera extends Component {
         }
         this.dialog.add(ProjectPickerDialog, {
             currentId: this.state.project?.id || null,
+            allowNone: true,
             onSelect: (project) => {
                 this.state.project = project;
-                writeLocal("lastProjectId", project.id);
+                writeLocal("lastProjectId", project?.id || null);
             },
         });
     }
@@ -629,7 +618,11 @@ export class CompanyCamCamera extends Component {
     }
 
     async openProjectPhotos() {
-        if (!this.state.project || this.state.recording) {
+        if (this.state.recording) {
+            return;
+        }
+        if (!this.state.project) {
+            this.action.doAction("tw_companycam.action_companycam_photo");
             return;
         }
         const action = await this.orm.call("project.project", "action_companycam_view_photos", [

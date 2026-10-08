@@ -24,9 +24,11 @@ Capture and organise job-site photos and videos directly inside Odoo projects.
 
 Version History
 ---------------
+* 19.0.1.1.0 - The project is optional: the camera opens straight away and photos can be
+  filed in a project later ("Without project" filter), so a quick shot is never blocked.
 * 19.0.1.0.0 - First release.
 """,
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'author': 'ticinoWEB',
     'website': 'https://ticinoweb.tech',
     'maintainer': 'ticinoWEB',

@@ -2,18 +2,20 @@
 <odoo>
     <template id="report_companycam_photos">
         <t t-call="web.html_container">
-            <t t-foreach="docs.project_id" t-as="project">
+            <t t-foreach="docs.companycam_report_groups()" t-as="group">
+                <t t-set="project" t-value="group[0]"/>
+                <t t-set="items" t-value="group[1]"/>
                 <t t-call="web.external_layout">
-                    <t t-set="o" t-value="project"/>
+                    <t t-set="o" t-value="project or items[0]"/>
                     <div class="page">
-                        <h2 class="mb-1" t-out="project.name"/>
+                        <h2 class="mb-1" t-if="project" t-out="project.name"/>
+                        <h2 class="mb-1" t-else="">Photos without project</h2>
                         <p class="text-muted mb-3">
-                            <t t-if="project.partner_id"><span t-out="project.partner_id.name"/> · </t>
-                            <t t-if="project.companycam_address"><span t-out="project.companycam_address"/> · </t>
-                            <span t-out="len(docs.filtered(lambda p: p.project_id == project))"/> items
+                            <t t-if="project and project.partner_id"><span t-out="project.partner_id.name"/> · </t>
+                            <t t-if="project and project.companycam_address"><span t-out="project.companycam_address"/> · </t>
+                            <span t-out="len(items)"/> items
                         </p>
                         <table class="table table-borderless" style="width: 100%;">
-                            <t t-set="items" t-value="docs.filtered(lambda p: p.project_id == project)"/>
                             <t t-foreach="range(0, len(items), 2)" t-as="row">
                                 <tr style="page-break-inside: avoid;">
                                     <t t-foreach="items[row:row + 2]" t-as="photo">

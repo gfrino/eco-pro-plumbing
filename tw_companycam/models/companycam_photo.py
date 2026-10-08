@@ -16,12 +16,15 @@ class CompanycamPhoto(models.Model):
     media_type = fields.Selection(
         [('photo', 'Photo'), ('video', 'Video')],
         string='Type', required=True, default='photo', index=True)
+    # Optional: a quick photo can be taken first and filed in a project later.
+    # Deleting a project keeps its photos (they become "without project").
     project_id = fields.Many2one(
-        'project.project', string='Project', required=True, index=True,
-        ondelete='cascade', tracking=True)
+        'project.project', string='Project', index=True,
+        ondelete='set null', tracking=True)
     partner_id = fields.Many2one(related='project_id.partner_id', string='Customer')
     company_id = fields.Many2one(
-        related='project_id.company_id', store=True, index=True, string='Company')
+        'res.company', string='Company', compute='_compute_company_id', store=True, index=True,
+        default=lambda self: self.env.company)
     user_id = fields.Many2one(
         'res.users', string='Captured by', default=lambda self: self.env.user,
         index=True, tracking=True)
@@ -61,6 +64,11 @@ class CompanycamPhoto(models.Model):
             label = _('Video') if photo.media_type == 'video' else _('Photo')
             when = format_datetime(self.env, photo.captured_at or fields.Datetime.now(), dt_format='short')
             photo.name = f'{label} {when}'
+
+    @api.depends('project_id.company_id')
+    def _compute_company_id(self):
+        for photo in self:
+            photo.company_id = photo.project_id.company_id or photo.company_id or self.env.company
 
     @api.depends('latitude', 'longitude')
     def _compute_has_location(self):
@@ -120,6 +128,14 @@ class CompanycamPhoto(models.Model):
             'views': [(False, 'form')],
             'target': 'current',
         }
+
+    def companycam_report_groups(self):
+        """[(project or False, photos)] for the PDF report; photos without project come last."""
+        groups = [(project, self.filtered(lambda p, pr=project: p.project_id == pr)) for project in self.project_id]
+        unsorted = self.filtered(lambda p: not p.project_id)
+        if unsorted:
+            groups.append((False, unsorted))
+        return groups
 
     def action_companycam_print_report(self):
         return self.env.ref('tw_companycam.action_report_companycam_photos').report_action(self)
