@@ -24,6 +24,9 @@ Capture and organise job-site photos and videos directly inside Odoo projects.
 
 Version History
 ---------------
+* 19.0.1.3.0 - iPhone: the preview could still stay black because Safari played the camera
+  video without painting it (photos were fine). The preview is now painted on a canvas from
+  the camera frames, and the blur effects over the preview (a known Safari trigger) are gone.
 * 19.0.1.2.0 - iPhone: the camera preview stayed black (photos were still taken). The preview
   is now set up the way iOS Safari requires, restarts by itself after a capture or when coming
   back to the app, and offers a "Tap to show the camera preview" button if iOS still blocks it.
@@ -31,7 +34,7 @@ Version History
   filed in a project later ("Without project" filter), so a quick shot is never blocked.
 * 19.0.1.0.0 - First release.
 """,
-    'version': '19.0.1.2.0',
+    'version': '19.0.1.3.0',
     'author': 'ticinoWEB',
     'website': 'https://ticinoweb.tech',
     'maintainer': 'ticinoWEB',

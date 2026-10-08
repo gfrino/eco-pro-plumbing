@@ -30,6 +30,12 @@ $cc-red: #ff3b30;
         }
     }
 
+    // Canvas copy of the preview, painted above the <video> (see startPreviewLoop)
+    .o_cc_preview_canvas {
+        background: transparent;
+        pointer-events: none;
+    }
+
     .o_cc_pip {
         position: absolute;
         right: 16px;
@@ -103,7 +109,6 @@ $cc-red: #ff3b30;
         background: rgba(0, 0, 0, 0.45);
         color: #fff;
         font-size: 1.2rem;
-        backdrop-filter: blur(6px);
 
         &.o_cc_small {
             width: 40px;
@@ -167,7 +172,6 @@ $cc-red: #ff3b30;
         color: #fff;
         font-weight: 600;
         font-size: 1rem;
-        backdrop-filter: blur(6px);
     }
 
     .o_cc_rec {
@@ -201,7 +205,6 @@ $cc-red: #ff3b30;
         padding: 12px;
         border-radius: 16px;
         background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(8px);
         z-index: 4;
     }
 

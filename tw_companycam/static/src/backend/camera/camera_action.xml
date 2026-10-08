@@ -5,6 +5,8 @@
             <!-- Live preview -->
             <video t-ref="video" class="o_cc_preview" autoplay="" muted="" playsinline=""
                    t-att-class="{ 'o_cc_mirror': state.facing === 'user' and state.mode !== 'dual' }"/>
+            <canvas t-ref="previewCanvas" class="o_cc_preview o_cc_preview_canvas"
+                    t-att-class="{ 'o_cc_mirror': state.facing === 'user' and state.mode !== 'dual' }"/>
             <video t-ref="pip" class="o_cc_pip" autoplay="" muted="" playsinline=""
                    t-att-class="{ 'd-none': state.mode !== 'dual' }"/>
             <div class="o_cc_flash" t-att-class="{ 'o_cc_flash_on': state.flash }"/>

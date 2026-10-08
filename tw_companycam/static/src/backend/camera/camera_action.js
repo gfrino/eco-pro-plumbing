@@ -42,6 +42,7 @@ export class CompanyCamCamera extends Component {
         this.dialog = useService("dialog");
         this.notification = useService("notification");
         this.videoRef = useRef("video");
+        this.previewCanvasRef = useRef("previewCanvas");
         this.pipRef = useRef("pip");
         this.fileRef = useRef("fileInput");
 
@@ -106,6 +107,7 @@ export class CompanyCamCamera extends Component {
         onWillUnmount(() => {
             this.unmounted = true;
             this.stopRecording(true);
+            cancelAnimationFrame(this.previewLoop);
             this.stopCamera();
             clearInterval(this.clock);
             clearInterval(this.recTimer);
@@ -216,6 +218,7 @@ export class CompanyCamCamera extends Component {
         video.srcObject = this.stream;
         await this.waitForMetadata(video);
         await this.playPreview();
+        this.startPreviewLoop();
 
         if (this.state.mode === "dual") {
             await this.startPip();
@@ -307,6 +310,44 @@ export class CompanyCamCamera extends Component {
             // Autoplay refused: a tap (user gesture) is needed to start it
             this.state.needsTap = true;
         }
+    }
+
+    /**
+     * Paint the live preview on a canvas. iOS Safari sometimes plays the camera video without
+     * painting it (black screen) although its frames are readable: drawing the frames
+     * ourselves (same method used to take the photo) always shows them.
+     */
+    startPreviewLoop() {
+        cancelAnimationFrame(this.previewLoop);
+        const canvas = this.previewCanvasRef.el;
+        const video = this.videoRef.el;
+        if (!canvas || !video) {
+            return;
+        }
+        const ctx = canvas.getContext("2d");
+        const draw = () => {
+            if (this.unmounted || !this.stream) {
+                return;
+            }
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const width = Math.round(canvas.clientWidth * dpr);
+            const height = Math.round(canvas.clientHeight * dpr);
+            if (canvas.width !== width || canvas.height !== height) {
+                canvas.width = width;
+                canvas.height = height;
+            }
+            const vw = video.videoWidth;
+            const vh = video.videoHeight;
+            if (vw && vh && width && height && video.readyState >= 2) {
+                // same framing as object-fit: cover
+                const scale = Math.max(width / vw, height / vh);
+                const dw = vw * scale;
+                const dh = vh * scale;
+                ctx.drawImage(video, (width - dw) / 2, (height - dh) / 2, dw, dh);
+            }
+            this.previewLoop = requestAnimationFrame(draw);
+        };
+        draw();
     }
 
     /** Restart the preview if iOS paused it, or reopen the camera if the track died. */
