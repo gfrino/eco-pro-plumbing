@@ -15,7 +15,7 @@ patch(SectionAndNoteListRenderer.prototype, {
         const formatColumn = columns.find(
             (col) =>
                 col.type === "button_group" &&
-                col.buttons?.some((button) => button.name === FORMAT_NOTE_ACTION)
+                col.buttons?.some((button) => button.clickParams?.name === FORMAT_NOTE_ACTION)
         );
         if (!formatColumn) {
             return sectionColumns;

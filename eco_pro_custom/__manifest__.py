@@ -1,6 +1,6 @@
 {
     'name': 'Eco Pro Customizations',
-    'version': '19.0.1.3.1',
+    'version': '19.0.1.3.2',
     'category': 'Customizations',
     'summary': 'Centralized module for Eco Pro Plumbing customizations',
     'depends': ['base', 'account', 'sale', 'crm', 'quickbooks_sync_online'],
