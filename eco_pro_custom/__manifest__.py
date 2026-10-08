@@ -1,6 +1,6 @@
 {
     'name': 'Eco Pro Customizations',
-    'version': '19.0.1.3.0',
+    'version': '19.0.1.3.1',
     'category': 'Customizations',
     'summary': 'Centralized module for Eco Pro Plumbing customizations',
     'depends': ['base', 'account', 'sale', 'crm', 'quickbooks_sync_online'],
@@ -13,6 +13,11 @@
         'views/sale_order_views.xml',
         'data/res_country_data.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'eco_pro_custom/static/src/js/section_and_note_format_button.js',
+        ],
+    },
     'installable': True,
     'auto_install': False,
     'license': 'LGPL-3',
