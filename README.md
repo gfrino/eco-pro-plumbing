@@ -54,6 +54,7 @@ Access groups: *CompanyCam / User* (users delete only their own captures) and
 
 ## Changelog
 
+- **interventi_management 19.0.1.2.0** – Job Requests get the chatter (attachments, notes, activities, status change log): technicians and office staff could not attach photos or documents to a job.
 - **tw_companycam 19.0.1.0.0** – First release.
 - **eco_pro_custom 19.0.1.2.0** – Formatted (rich-text) note lines in quotations, shown on PDF and portal: the client needs highlighted notes between products.
 - **eco_pro_custom 19.0.1.1.0** – Campaign / Medium / Source / Referred By on contacts, filled from the lead and copied to new quotations: see where each customer comes from without opening leads.
