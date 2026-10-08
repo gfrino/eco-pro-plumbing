@@ -5,13 +5,23 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']" position="inside">
-                <group string="Marketing" name="eco_marketing">
-                    <field name="campaign_id" options="{'no_create_edit': True}"/>
-                    <field name="medium_id" options="{'no_create_edit': True}"/>
-                    <field name="source_id" options="{'no_create_edit': True}"/>
-                    <field name="referred"/>
-                </group>
+            <xpath expr="//page[@name='sales_purchases']" position="after">
+                <page string="Marketing" name="eco_marketing">
+                    <group>
+                        <group name="eco_marketing_origin">
+                            <field name="source_id" options="{'no_create_edit': True}"/>
+                            <field name="medium_id" options="{'no_create_edit': True}"/>
+                            <field name="campaign_id" options="{'no_create_edit': True}"/>
+                            <field name="referred"/>
+                        </group>
+                        <group>
+                            <div class="text-muted" colspan="2">
+                                Where this customer came from. Filled automatically from their first lead,
+                                and copied to every new quotation for this customer.
+                            </div>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

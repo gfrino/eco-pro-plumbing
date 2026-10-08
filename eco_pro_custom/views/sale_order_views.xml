@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_eco_referred" model="ir.ui.view">
+        <field name="name">sale.order.form.eco.referred</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_reporting']/field[@name='source_id']" position="after">
+                <field name="referred"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
