@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_companycam_photos">
+        <t t-call="web.html_container">
+            <t t-foreach="docs.project_id" t-as="project">
+                <t t-call="web.external_layout">
+                    <t t-set="o" t-value="project"/>
+                    <div class="page">
+                        <h2 class="mb-1" t-out="project.name"/>
+                        <p class="text-muted mb-3">
+                            <t t-if="project.partner_id"><span t-out="project.partner_id.name"/> · </t>
+                            <t t-if="project.companycam_address"><span t-out="project.companycam_address"/> · </t>
+                            <span t-out="len(docs.filtered(lambda p: p.project_id == project))"/> items
+                        </p>
+                        <table class="table table-borderless" style="width: 100%;">
+                            <t t-set="items" t-value="docs.filtered(lambda p: p.project_id == project)"/>
+                            <t t-foreach="range(0, len(items), 2)" t-as="row">
+                                <tr style="page-break-inside: avoid;">
+                                    <t t-foreach="items[row:row + 2]" t-as="photo">
+                                        <td style="width: 50%; vertical-align: top; padding: 6px;">
+                                            <t t-set="img" t-value="photo.image_annotated or photo.image_1024"/>
+                                            <img t-if="img" t-att-src="image_data_uri(img)"
+                                                 style="width: 100%; max-height: 300px; object-fit: contain; border-radius: 4px;"/>
+                                            <div style="font-size: 11px; margin-top: 4px;">
+                                                <strong t-out="photo.name"/>
+                                                <t t-if="photo.media_type == 'video'"> (video)</t><br/>
+                                                <span t-field="photo.captured_at"/> · <span t-out="photo.user_id.name"/>
+                                                <t t-if="photo.has_location"><br/>GPS <t t-out="'%.6f, %.6f' % (photo.latitude, photo.longitude)"/></t>
+                                                <t t-if="photo.tag_ids"><br/><t t-out="', '.join(photo.tag_ids.mapped('name'))"/></t>
+                                                <t t-if="photo.description"><br/><em t-out="photo.description"/></t>
+                                            </div>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_companycam_qr">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="padding-top: 60px; text-align: center;">
+                        <h1 style="font-size: 40px;" t-out="o.name"/>
+                        <p style="font-size: 20px;" t-if="o.companycam_address" t-out="o.companycam_address"/>
+                        <img t-att-src="o.companycam_qr_data_uri()"
+                             style="display: block; width: 110mm; height: 110mm; margin: 30px auto;" alt="QR code"/>
+                        <p style="font-size: 22px;"><strong>Scan to open this project and add photos</strong></p>
+                        <p style="font-size: 14px; color: #666;">Odoo login required · <t t-out="(o.company_id or res_company).name"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

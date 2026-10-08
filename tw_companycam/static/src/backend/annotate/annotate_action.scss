@@ -1,0 +1,177 @@
+.o_companycam_annotate {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #111418;
+    color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+
+    .o_cca_top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: #{"max(8px, env(safe-area-inset-top))"} 12px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .o_cca_title {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .o_cca_icon {
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+
+        &:disabled {
+            opacity: 0.3;
+        }
+    }
+
+    .o_cca_stage {
+        position: relative;
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .o_cca_canvas_wrap {
+        position: relative;
+        display: flex;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .o_cca_canvas {
+        display: block;
+        max-width: 100%;
+        max-height: calc(100dvh - 210px);
+        border-radius: 6px;
+        cursor: crosshair;
+        touch-action: none;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+        &.o_cca_text_cursor {
+            cursor: text;
+        }
+    }
+
+    .o_cca_text_input {
+        position: absolute;
+        min-width: 160px;
+        padding: 2px 6px;
+        border: 2px dashed rgba(255, 255, 255, 0.8);
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.35);
+        font-weight: 700;
+        line-height: 1.2;
+        resize: none;
+        outline: none;
+        user-select: text;
+        -webkit-user-select: text;
+    }
+
+    .o_cca_loading {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .o_cca_bottom {
+        padding: 8px 12px #{"max(12px, env(safe-area-inset-bottom))"};
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .o_cca_tools,
+    .o_cca_palette {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .o_cca_palette {
+        margin-top: 8px;
+    }
+
+    .o_cca_tool {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 60px;
+        padding: 6px 8px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.75rem;
+
+        i {
+            font-size: 1.25rem;
+            margin-bottom: 2px;
+        }
+
+        &.o_cca_on {
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffd60a;
+        }
+    }
+
+    .o_cca_color {
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-radius: 50%;
+
+        &.o_cca_on {
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+        }
+    }
+
+    .o_cca_sep {
+        width: 1px;
+        height: 24px;
+        margin: 0 6px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .o_cca_size {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+
+        &.o_cca_on {
+            background: rgba(255, 255, 255, 0.14);
+        }
+    }
+
+    .o_cca_dot {
+        border-radius: 50%;
+        background: #fff;
+    }
+
+    .o_cca_dot_S { width: 6px; height: 6px; }
+    .o_cca_dot_M { width: 11px; height: 11px; }
+    .o_cca_dot_L { width: 17px; height: 17px; }
+}

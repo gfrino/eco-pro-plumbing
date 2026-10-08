@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_companycam_photos" model="ir.actions.report">
+        <field name="name">Photo report</field>
+        <field name="model">companycam.photo</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tw_companycam.report_companycam_photos</field>
+        <field name="report_file">tw_companycam.report_companycam_photos</field>
+        <field name="print_report_name">'Photo report'</field>
+        <field name="binding_model_id" ref="model_companycam_photo"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_companycam_qr" model="ir.actions.report">
+        <field name="name">Project QR code</field>
+        <field name="model">project.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tw_companycam.report_companycam_qr</field>
+        <field name="report_file">tw_companycam.report_companycam_qr</field>
+        <field name="print_report_name">'QR - %s' % object.name</field>
+    </record>
+</odoo>

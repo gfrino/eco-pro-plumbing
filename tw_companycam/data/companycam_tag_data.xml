@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="tag_before" model="companycam.tag">
+        <field name="name">Before</field>
+        <field name="color">2</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="tag_progress" model="companycam.tag">
+        <field name="name">In progress</field>
+        <field name="color">4</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="tag_after" model="companycam.tag">
+        <field name="name">After</field>
+        <field name="color">10</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="tag_damage" model="companycam.tag">
+        <field name="name">Damage</field>
+        <field name="color">1</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="tag_materials" model="companycam.tag">
+        <field name="name">Materials</field>
+        <field name="color">6</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="tag_safety" model="companycam.tag">
+        <field name="name">Safety</field>
+        <field name="color">3</field>
+        <field name="sequence">6</field>
+    </record>
+</odoo>

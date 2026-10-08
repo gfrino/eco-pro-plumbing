@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Public page for shared galleries and live project timelines (no login) -->
+    <template id="public_gallery_page" name="CompanyCam shared page">
+        <t t-set="head">
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="robots" content="noindex, nofollow"/>
+            <t t-call-assets="tw_companycam.assets_public" t-js="false"/>
+        </t>
+        <t t-set="html_data" t-value="{'lang': (request.env.lang or 'en_US').replace('_', '-')}"/>
+        <t t-call="web.layout">
+            <div class="cc-page">
+                <header class="cc-header">
+                    <div class="cc-wrap cc-header-inner">
+                        <img class="cc-logo" t-attf-src="/web/binary/company_logo?company={{ company.id }}"
+                             t-att-alt="company.name"/>
+                        <span class="cc-company" t-out="company.name"/>
+                    </div>
+                </header>
+                <main class="cc-wrap">
+                    <section class="cc-hero">
+                        <p class="cc-kicker">
+                            <t t-if="gallery">Shared photos</t>
+                            <t t-else="">Live job timeline</t>
+                        </p>
+                        <h1 t-out="title"/>
+                        <p class="cc-meta">
+                            <t t-if="project and project.companycam_address">
+                                <i class="fa fa-map-marker" role="img" aria-label="Address"/>
+                                <span t-out="project.companycam_address"/> ·
+                            </t>
+                            <span><t t-out="photo_count"/> photos and videos</span>
+                        </p>
+                        <p class="cc-intro" t-if="gallery and gallery.intro" t-out="gallery.intro"/>
+                    </section>
+
+                    <p t-if="not groups" class="cc-empty">No photos have been added yet. Come back later.</p>
+
+                    <section t-foreach="groups" t-as="group" class="cc-day">
+                        <h2 t-out="group[0]"/>
+                        <div class="cc-grid">
+                            <figure t-foreach="group[1]" t-as="item" class="cc-card">
+                                <t t-set="photo" t-value="item['photo']"/>
+                                <t t-set="img_field" t-value="'image_annotated' if photo.has_annotation else 'image_1920'"/>
+                                <t t-set="thumb_field" t-value="'image_annotated_512' if photo.has_annotation else 'image_1024'"/>
+                                <video t-if="photo.media_type == 'video'" class="cc-media" controls="" preload="none" playsinline=""
+                                       t-att-poster="'%s/%s/image_1024' % (media_prefix, photo.id)">
+                                    <source t-att-src="'%s/%s/video_file' % (media_prefix, photo.id)" t-att-type="photo.video_mimetype or 'video/webm'"/>
+                                </video>
+                                <a t-else="" t-att-href="'%s/%s/%s' % (media_prefix, photo.id, img_field)" target="_blank" rel="noopener">
+                                    <img class="cc-media" loading="lazy"
+                                         t-att-src="'%s/%s/%s' % (media_prefix, photo.id, thumb_field)"
+                                         t-att-alt="photo.description or photo.name"/>
+                                </a>
+                                <figcaption>
+                                    <p class="cc-caption" t-if="photo.description" t-out="photo.description"/>
+                                    <p class="cc-tags" t-if="photo.tag_ids">
+                                        <span t-foreach="photo.tag_ids" t-as="tag" class="cc-tag" t-out="tag.name"/>
+                                    </p>
+                                    <p class="cc-details" t-if="show_details">
+                                        <span><i class="fa fa-clock-o" role="img" aria-label="Time"/> <t t-out="item['time']"/></span>
+                                        <span t-if="photo.user_id"><i class="fa fa-user" role="img" aria-label="Taken by"/> <t t-out="photo.user_id.name"/></span>
+                                        <a t-if="photo.has_location" t-att-href="photo.map_url" target="_blank" rel="noopener nofollow">
+                                            <i class="fa fa-map-marker" role="img" aria-label="Location"/> Map
+                                        </a>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </section>
+                </main>
+                <footer class="cc-footer cc-wrap">
+                    <span t-out="company.name"/>
+                    <t t-if="company.phone"> · <a t-att-href="'tel:%s' % company.phone" t-out="company.phone"/></t>
+                    <t t-if="company.email"> · <a t-att-href="'mailto:%s' % company.email" t-out="company.email"/></t>
+                </footer>
+            </div>
+        </t>
+    </template>
+</odoo>

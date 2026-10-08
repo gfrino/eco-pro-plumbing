@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tw_companycam.CameraAction">
+        <div class="o_companycam_camera" t-att-class="{ 'o_cc_recording': state.recording }">
+            <!-- Live preview -->
+            <video t-ref="video" class="o_cc_preview" autoplay="" muted="" playsinline=""
+                   t-att-class="{ 'o_cc_mirror': state.facing === 'user' and state.mode !== 'dual' }"/>
+            <video t-ref="pip" class="o_cc_pip" autoplay="" muted="" playsinline=""
+                   t-att-class="{ 'd-none': state.mode !== 'dual' }"/>
+            <div class="o_cc_flash" t-att-class="{ 'o_cc_flash_on': state.flash }"/>
+
+            <div t-if="state.error" class="o_cc_error">
+                <i class="fa fa-video-camera fa-3x mb-3" role="img" aria-label="Camera"/>
+                <p t-esc="state.error"/>
+                <button class="btn btn-light btn-lg" t-on-click="openUpload">
+                    <i class="fa fa-upload me-2" role="img" aria-label="Upload"/>Upload photos or videos
+                </button>
+            </div>
+
+            <!-- Top bar -->
+            <div class="o_cc_top">
+                <button class="o_cc_round" t-on-click="close" title="Close camera" aria-label="Close camera">
+                    <i class="fa fa-times"/>
+                </button>
+                <button class="o_cc_project" t-on-click="chooseProject" t-att-disabled="state.recording">
+                    <i class="fa fa-folder-open me-2" role="img" aria-label="Project"/>
+                    <span class="text-truncate" t-esc="projectLabel"/>
+                    <i class="fa fa-chevron-down ms-2 small" role="img" aria-label="Change"/>
+                </button>
+                <button class="o_cc_round" t-on-click="toggleTags" title="Tags" aria-label="Tags"
+                        t-att-class="{ 'o_cc_active': state.selectedTagIds.length }">
+                    <i class="fa fa-tag"/>
+                    <span t-if="state.selectedTagIds.length" class="o_cc_count" t-esc="state.selectedTagIds.length"/>
+                </button>
+            </div>
+
+            <div t-if="state.recording" class="o_cc_rec">
+                <span class="o_cc_rec_dot"/><t t-esc="recordingLabel"/>
+            </div>
+
+            <!-- Tag chooser: chosen tags are added to the next captures -->
+            <div t-if="state.showTags" class="o_cc_tags">
+                <p class="o_cc_tags_hint">Tags for the next photos</p>
+                <div class="o_cc_tags_list">
+                    <button t-foreach="state.tags" t-as="tag" t-key="tag.id"
+                            class="o_cc_tag" t-att-class="{ 'o_cc_tag_on': isTagSelected(tag) }"
+                            t-on-click="() => this.toggleTag(tag)">
+                        <i t-if="isTagSelected(tag)" class="fa fa-check me-1" role="img" aria-label="Selected"/>
+                        <t t-esc="tag.name"/>
+                    </button>
+                    <span t-if="!state.tags.length" class="o_cc_tags_hint">No tags yet: an administrator can create them in Configuration.</span>
+                </div>
+            </div>
+
+            <!-- Time / place stamp -->
+            <div class="o_cc_stamp">
+                <div class="fw-bold" t-if="state.project" t-esc="state.project.name"/>
+                <div><t t-esc="stampDate"/> · <t t-esc="stampTime"/></div>
+                <div><i class="fa fa-map-marker me-1" role="img" aria-label="Location"/><t t-esc="stampLocation"/></div>
+            </div>
+
+            <!-- Bottom controls -->
+            <div class="o_cc_bottom">
+                <div class="o_cc_modes" role="tablist">
+                    <button t-foreach="modes" t-as="mode" t-key="mode.key" role="tab"
+                            class="o_cc_mode" t-att-class="{ 'o_cc_mode_on': state.mode === mode.key }"
+                            t-att-disabled="state.recording"
+                            t-on-click="() => this.setMode(mode.key)" t-esc="mode.label"/>
+                </div>
+                <div class="o_cc_controls">
+                    <div class="o_cc_side">
+                        <button class="o_cc_last" t-on-click="openProjectPhotos" title="Photos of this project"
+                                aria-label="Photos of this project">
+                            <img t-if="lastCapture and lastCapture.previewUrl" t-att-src="lastCapture.previewUrl" alt=""/>
+                            <i t-else="" class="fa fa-picture-o"/>
+                            <span t-if="pendingCount" class="o_cc_count" t-att-class="{ 'o_cc_count_warn': !state.online }"
+                                  t-esc="pendingCount"/>
+                        </button>
+                        <button class="o_cc_round o_cc_small" t-on-click="openUpload" title="Upload from device"
+                                aria-label="Upload from device" t-att-disabled="state.recording">
+                            <i class="fa fa-upload"/>
+                        </button>
+                    </div>
+                    <button class="o_cc_shutter" t-on-click="onShutter"
+                            t-att-class="{ 'o_cc_shutter_video': state.mode !== 'photo', 'o_cc_shutter_stop': state.recording }"
+                            t-att-disabled="state.project and !state.ready"
+                            t-att-title="shutterLabel" t-att-aria-label="shutterLabel">
+                        <span/>
+                    </button>
+                    <div class="o_cc_side o_cc_side_right">
+                        <button class="o_cc_round" t-on-click="flipCamera" title="Switch camera" aria-label="Switch camera"
+                                t-att-disabled="state.recording or state.mode === 'dual'">
+                            <i class="fa fa-refresh"/>
+                        </button>
+                    </div>
+                </div>
+                <div class="o_cc_status" t-if="pendingCount">
+                    <t t-if="!state.online">
+                        <i class="fa fa-wifi me-1" role="img" aria-label="Offline"/>
+                        No connection: <t t-esc="pendingCount"/> saved on this device, they will upload automatically.
+                    </t>
+                    <t t-elif="state.captures.some((c) => c.status === 'error')">
+                        Upload interrupted.
+                        <button class="btn btn-link btn-sm text-white p-0 align-baseline" t-on-click="retryUploads">Try again</button>
+                    </t>
+                    <t t-else="">
+                        <i class="fa fa-cloud-upload me-1" role="img" aria-label="Uploading"/>
+                        Uploading <t t-esc="pendingCount"/>…
+                    </t>
+                </div>
+            </div>
+
+            <input type="file" t-ref="fileInput" class="d-none" multiple="" accept="image/*,video/*"
+                   t-on-change="onFilesSelected"/>
+        </div>
+    </t>
+</templates>

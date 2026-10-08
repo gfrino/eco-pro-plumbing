@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Standard project form: photos smart button, camera button, job site tab -->
+    <record id="project_project_view_form_companycam" model="ir.ui.view">
+        <field name="name">project.project.form.companycam</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_companycam_open_camera" type="object" string="Camera" icon="fa-camera"
+                        groups="tw_companycam.group_companycam_user" invisible="not id"/>
+            </header>
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="action_companycam_view_photos" icon="fa-picture-o"
+                        groups="tw_companycam.group_companycam_user" invisible="not id">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="companycam_photo_count"/> / <field name="companycam_video_count"/>
+                        </span>
+                        <span class="o_stat_text">Photos / Videos</span>
+                    </div>
+                </button>
+            </div>
+            <page name="settings" position="before">
+                <page name="companycam" string="Job site" groups="tw_companycam.group_companycam_user">
+                    <group>
+                        <group string="Where">
+                            <field name="companycam_address" placeholder="Street, ZIP City"/>
+                            <field name="companycam_last_capture" invisible="not companycam_last_capture"/>
+                        </group>
+                        <group string="Share progress">
+                            <field name="companycam_timeline_enabled" widget="boolean_toggle"/>
+                            <field name="companycam_timeline_url" widget="CopyClipboardURL"
+                                   invisible="not companycam_timeline_enabled or not companycam_timeline_url"/>
+                            <div colspan="2" class="text-muted small" invisible="companycam_timeline_enabled">
+                                Turn on to get a link your customer can open to follow the job, with every photo in real time.
+                            </div>
+                            <div colspan="2" invisible="not companycam_timeline_enabled">
+                                <button name="action_companycam_new_timeline_link" type="object" string="Create a new link"
+                                        class="btn-link p-0" confirm="Whoever has the current link will no longer be able to open it. Continue?"/>
+                            </div>
+                        </group>
+                    </group>
+                    <div class="d-flex flex-wrap gap-2 mt-2" invisible="not id">
+                        <button name="action_companycam_open_camera" type="object" class="btn btn-primary" icon="fa-camera" string="Open camera"/>
+                        <button name="action_companycam_print_qr" type="object" class="btn btn-secondary" icon="fa-qrcode" string="Print project QR code"/>
+                        <button name="action_companycam_print_photos" type="object" class="btn btn-secondary" icon="fa-file-pdf-o" string="Photo report (PDF)"
+                                invisible="not companycam_photo_count and not companycam_video_count"/>
+                    </div>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <!-- CompanyCam project list: cover photo cards, click opens the project's photos -->
+    <record id="project_project_view_kanban_companycam" model="ir.ui.view">
+        <field name="name">project.project.kanban.companycam</field>
+        <field name="model">project.project</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <kanban class="o_companycam_project_kanban" action="action_companycam_view_photos" type="object"
+                    sample="1" quick_create="false" create="true">
+                <field name="companycam_cover_id"/>
+                <field name="companycam_photo_count"/>
+                <field name="companycam_video_count"/>
+                <templates>
+                    <t t-name="card" class="p-0 o_companycam_card">
+                        <div class="o_companycam_thumb">
+                            <img t-if="record.companycam_cover_id.raw_value"
+                                 t-att-src="'/web/image/companycam.photo/' + record.companycam_cover_id.raw_value + '/image_512'"
+                                 class="o_companycam_thumb_img" alt="Cover photo" loading="lazy"/>
+                            <div t-else="" class="o_companycam_thumb_empty">
+                                <i class="fa fa-camera fa-2x" role="img" aria-label="No photos"/>
+                                <span>No photos yet</span>
+                            </div>
+                            <field name="is_favorite" widget="boolean_favorite" nolabel="1" class="o_companycam_star"/>
+                        </div>
+                        <div class="px-2 py-2">
+                            <div class="fw-bold text-truncate fs-5"><field name="name"/></div>
+                            <div class="text-muted small text-truncate"><field name="companycam_address"/></div>
+                            <div class="text-muted small text-truncate" t-if="!record.companycam_address.raw_value">
+                                <field name="partner_id"/>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mt-1 small">
+                                <span title="Photos"><i class="fa fa-picture-o me-1" role="img" aria-label="Photos"/><field name="companycam_photo_count"/></span>
+                                <span title="Videos"><i class="fa fa-video-camera me-1" role="img" aria-label="Videos"/><field name="companycam_video_count"/></span>
+                                <span class="ms-auto text-muted"><field name="companycam_last_capture" widget="date" invisible="not companycam_last_capture"/></span>
+                            </div>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="project_project_view_search_companycam" model="ir.ui.view">
+        <field name="name">project.project.search.companycam</field>
+        <field name="model">project.project</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="companycam_address" string="Job site address"/>
+                <filter name="companycam_with_photos" string="With photos" domain="[('companycam_photo_ids', '!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

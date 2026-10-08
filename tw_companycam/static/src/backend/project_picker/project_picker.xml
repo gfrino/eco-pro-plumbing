@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tw_companycam.ProjectPickerDialog">
+        <Dialog title="title" size="'md'" contentClass="'o_companycam_picker'">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-search" role="img" aria-label="Search"/></span>
+                <input type="search" class="form-control form-control-lg" autofocus=""
+                       placeholder="Project, customer or address"
+                       t-att-value="state.search" t-on-input="onInput"
+                       t-on-keydown="onKeydown"/>
+            </div>
+            <div class="list-group o_companycam_picker_list">
+                <button t-foreach="state.projects" t-as="project" t-key="project.id" type="button"
+                        class="list-group-item list-group-item-action d-flex align-items-center gap-3"
+                        t-att-class="{ active: project.id === props.currentId }"
+                        t-on-click="() => this.select(project)">
+                    <span class="o_companycam_picker_thumb">
+                        <img t-if="project.companycam_cover_id"
+                             t-att-src="'/web/image/companycam.photo/' + project.companycam_cover_id[0] + '/image_128'" alt=""/>
+                        <i t-else="" class="fa fa-building-o" role="img" aria-label="Project"/>
+                    </span>
+                    <span class="d-flex flex-column text-start overflow-hidden">
+                        <strong class="text-truncate" t-esc="project.name"/>
+                        <small class="text-truncate opacity-75"
+                               t-esc="project.companycam_address or (project.partner_id and project.partner_id[1]) or ''"/>
+                    </span>
+                </button>
+            </div>
+            <p t-if="!state.loading and !state.projects.length and !state.search" class="text-muted text-center my-4">
+                No projects yet. Type a name above to create the first one.
+            </p>
+            <button t-if="state.search.trim()" type="button" class="btn btn-outline-primary w-100 mt-3"
+                    t-att-disabled="state.creating" t-on-click="create">
+                <i class="fa fa-plus me-2" role="img" aria-label="Create"/>
+                Create project “<t t-esc="state.search.trim()"/>”
+            </button>
+            <t t-set-slot="footer">
+                <button class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

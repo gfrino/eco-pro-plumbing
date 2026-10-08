@@ -1,0 +1,1614 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tw_companycam
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260609\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-08 13:22+0000\n"
+"PO-Revision-Date: 2026-10-08 13:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid " and "
+msgstr " e "
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"%s captures are saved on this device and will be uploaded next time you open"
+" the camera."
+msgstr ""
+"%s acquisizioni sono salvate su questo dispositivo e verranno caricate la "
+"prossima volta che apri la fotocamera."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid "%s photos"
+msgstr "%s foto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid "%s videos"
+msgstr "%s video"
+
+#. module: tw_companycam
+#: model:ir.actions.report,print_report_name:tw_companycam.action_report_companycam_photos
+msgid "'Photo report'"
+msgstr "'Rapporto fotografico'"
+
+#. module: tw_companycam
+#: model:ir.actions.report,print_report_name:tw_companycam.action_report_companycam_qr
+msgid "'QR - %s' % object.name"
+msgstr "'QR - %s' % object.name"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_photos
+msgid "(video)"
+msgstr "(video)"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid "1 photo"
+msgstr "1 foto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid "1 video"
+msgstr "1 video"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_photos
+msgid "<br/>GPS"
+msgstr "<br/>GPS"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid ""
+"<i class=\"fa fa-camera fa-2x\" role=\"img\" aria-label=\"No photos\"/>\n"
+"                                <span>No photos yet</span>"
+msgstr ""
+"<i class=\"fa fa-camera fa-2x\" role=\"img\" aria-label=\"Nessuna foto\"/>\n"
+"                                <span>Ancora nessuna foto</span>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Time\"/>"
+msgstr "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Ora\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "<i class=\"fa fa-clone\" role=\"img\" aria-label=\"Dual camera\"/>"
+msgstr "<i class=\"fa fa-clone\" role=\"img\" aria-label=\"Doppia fotocamera\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid ""
+"<i class=\"fa fa-link\" role=\"img\" aria-label=\"Link\"/>\n"
+"                        <span>Send this link: whoever opens it sees only the photos below, no login needed.</span>"
+msgstr ""
+"<i class=\"fa fa-link\" role=\"img\" aria-label=\"Link\"/>\n"
+"                        <span>Invia questo link: chi lo apre vede solo le foto qui sotto, senza dover accedere.</span>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Address\"/>"
+msgstr "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Indirizzo\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Location saved\"/>"
+msgstr "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Posizione salvata\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Location\"/> Map"
+msgstr "<i class=\"fa fa-map-marker\" role=\"img\" aria-label=\"Posizione\"/> Mappa"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "<i class=\"fa fa-pencil\" role=\"img\" aria-label=\"Has markup\"/>"
+msgstr "<i class=\"fa fa-pencil\" role=\"img\" aria-label=\"Con annotazioni\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid "<i class=\"fa fa-picture-o me-1\" role=\"img\" aria-label=\"Photos\"/>"
+msgstr "<i class=\"fa fa-picture-o me-1\" role=\"img\" aria-label=\"Foto\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "<i class=\"fa fa-play\" role=\"img\" aria-label=\"Video\"/>"
+msgstr "<i class=\"fa fa-play\" role=\"img\" aria-label=\"Video\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "<i class=\"fa fa-user\" role=\"img\" aria-label=\"Taken by\"/>"
+msgstr "<i class=\"fa fa-user\" role=\"img\" aria-label=\"Scattata da\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid "<i class=\"fa fa-video-camera me-1\" role=\"img\" aria-label=\"Videos\"/>"
+msgstr "<i class=\"fa fa-video-camera me-1\" role=\"img\" aria-label=\"Video\"/>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "<span class=\"o_stat_text\">Photos / Videos</span>"
+msgstr "<span class=\"o_stat_text\">Foto / Video</span>"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_qr
+msgid "<strong>Scan to open this project and add photos</strong>"
+msgstr ""
+"<strong>Scansiona per aprire questo progetto e aggiungere foto</strong>"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "A capture could not be saved (error %s). It stays on this device."
+msgstr ""
+"Non è stato possibile salvare un'acquisizione (errore %s). Rimane su questo "
+"dispositivo."
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_gallery.py:0
+msgid "A new link was created; the previous link no longer works."
+msgstr "È stato creato un nuovo link; quello precedente non funziona più."
+
+#. module: tw_companycam
+#: model:ir.model.constraint,message:tw_companycam.constraint_companycam_tag_name_uniq
+msgid "A tag with this name already exists."
+msgstr "Esiste già un'etichetta con questo nome."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__access_token
+msgid "Access Token"
+msgstr "Token di accesso"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__location_accuracy
+msgid "Accuracy (m)"
+msgstr "Precisione (m)"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_needaction
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_needaction
+msgid "Action Needed"
+msgstr "Azione richiesta"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__active
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__active
+msgid "Active"
+msgstr "Attivo"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Add a caption: what does this photo show?"
+msgstr "Aggiungi una didascalia: cosa mostra questa foto?"
+
+#. module: tw_companycam
+#: model:res.groups,name:tw_companycam.group_companycam_manager
+msgid "Administrator"
+msgstr "Amministratore"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_after
+msgid "After"
+msgstr "Dopo"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "All"
+msgstr "Tutto"
+
+#. module: tw_companycam
+#: model:res.groups,comment:tw_companycam.group_companycam_manager
+msgid "Also manages photo tags and can delete any photo."
+msgstr "Gestisce anche le etichette e può eliminare qualsiasi foto."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__annotation_json
+msgid "Annotation Json"
+msgstr "Dati annotazioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_project_project__companycam_timeline_enabled
+msgid ""
+"Anyone with the link can follow the progress of this job with all its "
+"photos, in real time."
+msgstr ""
+"Chiunque abbia il link può seguire l'avanzamento del lavoro con tutte le "
+"foto, in tempo reale."
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_search
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_tag_view_search
+msgid "Archived"
+msgstr "Archiviato"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Arrow"
+msgstr "Freccia"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_attachment_count
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_attachment_count
+msgid "Attachment Count"
+msgstr "Numero allegati"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Back"
+msgstr "Indietro"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_before
+msgid "Before"
+msgstr "Prima"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Before, After, Damage..."
+msgstr "Prima, Dopo, Danno..."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Box"
+msgstr "Riquadro"
+
+#. module: tw_companycam
+#. odoo-javascript
+#. odoo-python
+#: code:addons/tw_companycam/models/project_project.py:0
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.actions.client,name:tw_companycam.action_companycam_camera
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_camera
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Camera"
+msgstr "Fotocamera"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"Camera access is blocked. Allow the camera for this site in your browser "
+"settings, or use “Upload”."
+msgstr ""
+"L'accesso alla fotocamera è bloccato. Consenti la fotocamera per questo sito"
+" nelle impostazioni del browser, oppure usa “Carica”."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__description
+msgid "Caption"
+msgstr "Didascalia"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__capture_uid
+msgid "Capture Uid"
+msgstr "ID acquisizione"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__user_id
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Captured by"
+msgstr "Scattata da"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__captured_at
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Captured on"
+msgstr "Scattata il"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Change"
+msgstr "Cambia"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.js:0
+msgid "Choose a project"
+msgstr "Scegli un progetto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Circle"
+msgstr "Cerchio"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Close camera"
+msgstr "Chiudi fotocamera"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__color
+msgid "Color"
+msgstr "Colore"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__company_id
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: tw_companycam
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_root
+#: model:res.groups.privilege,name:tw_companycam.res_groups_privilege_companycam
+msgid "CompanyCam"
+msgstr "CompanyCam"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_cover_id
+msgid "Companycam Cover"
+msgstr "Foto di copertina"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_timeline_token
+msgid "Companycam Timeline Token"
+msgstr "Token cronologia"
+
+#. module: tw_companycam
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_config
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid "Cover photo"
+msgstr "Foto di copertina"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "Create"
+msgstr "Crea"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Create a new link"
+msgstr "Crea un nuovo link"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid ""
+"Create a new link? Whoever has the current link will no longer be able to "
+"open it."
+msgstr "Creare un nuovo link? Chi ha il link attuale non potrà più aprirlo."
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_tag
+msgid "Create a tag"
+msgstr "Crea un'etichetta"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "Create project “"
+msgstr "Crea progetto “"
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_project
+msgid "Create your first job site project"
+msgstr "Crea il tuo primo progetto di cantiere"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__create_uid
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__create_uid
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__create_date
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__create_date
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__partner_id
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_damage
+msgid "Damage"
+msgstr "Danno"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Day"
+msgstr "Giorno"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Details"
+msgstr "Dettagli"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Details, tags and comments"
+msgstr "Dettagli, etichette e commenti"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__display_name
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__display_name
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__display_name
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Draw"
+msgstr "Disegna"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Dual"
+msgstr "Doppia"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "Dual camera"
+msgstr "Doppia fotocamera"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__dual_camera
+msgid "Dual camera video"
+msgstr "Video con doppia fotocamera"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__video_duration
+msgid "Duration (s)"
+msgstr "Durata (s)"
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_project
+msgid ""
+"Every photo and video you take is saved in a project: one project per job "
+"site or customer."
+msgstr ""
+"Ogni foto e video che scatti viene salvato in un progetto: un progetto per "
+"cantiere o cliente."
+
+#. module: tw_companycam
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_feed
+msgid "Feed"
+msgstr "Bacheca"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_project_project__companycam_address
+msgid ""
+"Filled in from the customer's address; change it if the job site is "
+"somewhere else."
+msgstr ""
+"Compilato dall'indirizzo del cliente; modificalo se il cantiere si trova "
+"altrove."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Finding location…"
+msgstr "Ricerca posizione…"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_follower_ids
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_follower_ids
+msgid "Followers"
+msgstr "Follower"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_partner_ids
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Follower (partner)"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__name
+msgid "Gallery name"
+msgstr "Nome galleria"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__has_annotation
+msgid "Has Annotation"
+msgstr "Con annotazioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__has_location
+msgid "Has Location"
+msgstr "Con posizione"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__has_message
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__has_message
+msgid "Has Message"
+msgstr "Ha messaggi"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "Has markup"
+msgstr "Con annotazioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__id
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__id
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__id
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__capture_uid
+msgid "Identifier generated by the camera, prevents duplicate uploads."
+msgstr "Identificativo generato dalla fotocamera, evita caricamenti doppi."
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__message_needaction
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Se selezionato, nuovi messaggi richiedono la tua attenzione."
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__message_has_error
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__message_has_sms_error
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__message_has_error
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Se selezionato, alcuni messaggi hanno un errore di consegna."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_1920
+msgid "Image"
+msgstr "Immagine"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_1024
+msgid "Image 1024"
+msgstr "Immagine 1024"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_128
+msgid "Image 128"
+msgstr "Immagine 128"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_256
+msgid "Image 256"
+msgstr "Immagine 256"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_512
+msgid "Image 512"
+msgstr "Immagine 512"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_progress
+msgid "In progress"
+msgstr "In corso"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_is_follower
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_is_follower
+msgid "Is Follower"
+msgstr "È un follower"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_list
+msgid "Items"
+msgstr "Elementi"
+
+#. module: tw_companycam
+#: model:ir.model,name:tw_companycam.model_companycam_photo
+msgid "Job Site Photo or Video"
+msgstr "Foto o video di cantiere"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Job site"
+msgstr "Cantiere"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_address
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_search_companycam
+msgid "Job site address"
+msgstr "Indirizzo del cantiere"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_photo_ids
+msgid "Job site photos"
+msgstr "Foto di cantiere"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__write_uid
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__write_uid
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__write_date
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__write_date
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_last_capture
+msgid "Last capture"
+msgstr "Ultima acquisizione"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__latitude
+msgid "Latitude"
+msgstr "Latitudine"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__expiry_date
+msgid "Leave empty for a link that never expires."
+msgstr "Lascia vuoto per un link che non scade mai."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__share_url
+msgid "Link to share"
+msgstr "Link da condividere"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__expiry_date
+msgid "Link valid until"
+msgstr "Link valido fino al"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "Live job timeline"
+msgstr "Avanzamento lavori in diretta"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_timeline_enabled
+msgid "Live timeline link"
+msgstr "Link avanzamento in diretta"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Loading"
+msgstr "Caricamento"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Location"
+msgstr "Posizione"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Location off"
+msgstr "Posizione disattivata"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "Location saved"
+msgstr "Posizione salvata"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__longitude
+msgid "Longitude"
+msgstr "Longitudine"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__map_url
+msgid "Map"
+msgstr "Mappa"
+
+#. module: tw_companycam
+#. odoo-javascript
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_list
+msgid "Markup"
+msgstr "Annota"
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+msgid "Markup is available on photos only."
+msgstr "Le annotazioni sono disponibili solo sulle foto."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Markup removed."
+msgstr "Annotazioni rimosse."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Markup saved. The original photo is kept."
+msgstr "Annotazioni salvate. La foto originale è conservata."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_annotated_512
+msgid "Markup thumbnail"
+msgstr "Miniatura con annotazioni"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_materials
+msgid "Materials"
+msgstr "Materiali"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Me"
+msgstr "Io"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__intro
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_has_error
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_has_error
+msgid "Message Delivery error"
+msgstr "Errore di consegna messaggio"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "Message shown at the top of the page (optional)"
+msgstr "Messaggio mostrato in cima alla pagina (facoltativo)"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_ids
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_ids
+msgid "Messages"
+msgstr "Messaggi"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "My captures"
+msgstr "Le mie acquisizioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "New link"
+msgstr "Nuovo link"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Newer"
+msgstr "Più recente"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"No camera was found on this device. Use “Upload” to add photos and videos."
+msgstr ""
+"Nessuna fotocamera trovata su questo dispositivo. Usa “Carica” per "
+"aggiungere foto e video."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "No connection:"
+msgstr "Nessuna connessione:"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "No photos have been added yet. Come back later."
+msgstr "Non sono ancora state aggiunte foto. Torna più tardi."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_photo
+msgid "No photos yet"
+msgstr "Ancora nessuna foto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "No projects yet. Type a name above to create the first one."
+msgstr "Ancora nessun progetto. Scrivi un nome qui sopra per creare il primo."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "No tags yet: an administrator can create them in Configuration."
+msgstr ""
+"Ancora nessuna etichetta: un amministratore può crearle in Configurazione."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/video_field/video_field.xml:0
+msgid "No video"
+msgstr "Nessun video"
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_gallery
+msgid "Nothing shared yet"
+msgstr "Ancora nulla di condiviso"
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/controllers/main.py:0
+msgid "Nothing to upload."
+msgstr "Niente da caricare."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_needaction_counter
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Numero di azioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_has_error_counter
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_has_error_counter
+msgid "Number of errors"
+msgstr "Numero di errori"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__message_needaction_counter
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Numero di messaggi che richiedono un'azione"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__message_has_error_counter
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero di messaggi con errore di consegna"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_qr
+msgid "Odoo login required ·"
+msgstr "Accesso a Odoo richiesto ·"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Offline"
+msgstr "Offline"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Older"
+msgstr "Meno recente"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Only mine"
+msgstr "Solo le mie"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Open camera"
+msgstr "Apri fotocamera"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Open map"
+msgstr "Apri mappa"
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_photo
+msgid ""
+"Open the <b>Camera</b> from the menu or from a project to take your first job-site photo.\n"
+"               Date, time and location are saved automatically."
+msgstr ""
+"Apri la <b>Fotocamera</b> dal menu o da un progetto per scattare la prima foto di cantiere.\n"
+"               Data, ora e posizione vengono salvate automaticamente."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Open the camera"
+msgstr "Apri la fotocamera"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid ""
+"Open the camera to take the first job-site photo: date, time and location "
+"are saved automatically."
+msgstr ""
+"Apri la fotocamera per scattare la prima foto di cantiere: data, ora e "
+"posizione vengono salvate automaticamente."
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Original photo"
+msgstr "Foto originale"
+
+#. module: tw_companycam
+#. odoo-javascript
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+#: model:ir.model.fields.selection,name:tw_companycam.selection__companycam_photo__media_type__photo
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Photo"
+msgstr "Foto"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__photo_count
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__photo_count
+msgid "Photo Count"
+msgstr "Numero foto"
+
+#. module: tw_companycam
+#: model:ir.model,name:tw_companycam.model_companycam_tag
+msgid "Photo Tag"
+msgstr "Etichetta foto"
+
+#. module: tw_companycam
+#: model:ir.actions.report,name:tw_companycam.action_report_companycam_photos
+msgid "Photo report"
+msgstr "Rapporto fotografico"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Photo report (PDF)"
+msgstr "Rapporto fotografico (PDF)"
+
+#. module: tw_companycam
+#: model:ir.actions.act_window,name:tw_companycam.action_companycam_tag
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_tags
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_tag_view_list
+msgid "Photo tags"
+msgstr "Etichette foto"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__image_annotated
+msgid "Photo with markup"
+msgstr "Foto con annotazioni"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_photo_count
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_tag_view_list
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid "Photos"
+msgstr "Foto"
+
+#. module: tw_companycam
+#: model:ir.actions.act_window,name:tw_companycam.action_companycam_photo
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__photo_ids
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_photos
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_list
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Photos and videos"
+msgstr "Foto e video"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "Photos and videos in this gallery"
+msgstr "Foto e video in questa galleria"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Photos of this project"
+msgstr "Foto di questo progetto"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "Preview"
+msgstr "Anteprima"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Print"
+msgstr "Stampa"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "Print PDF"
+msgstr "Stampa PDF"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Print project QR code"
+msgstr "Stampa codice QR del progetto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+#: model:ir.model,name:tw_companycam.model_project_project
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__project_id
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__project_id
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Project"
+msgstr "Progetto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.actions.client,name:tw_companycam.action_companycam_feed
+msgid "Project Feed"
+msgstr "Bacheca progetti"
+
+#. module: tw_companycam
+#: model:ir.actions.report,name:tw_companycam.action_report_companycam_qr
+msgid "Project QR code"
+msgstr "Codice QR del progetto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "Project, customer or address"
+msgstr "Progetto, cliente o indirizzo"
+
+#. module: tw_companycam
+#: model:ir.actions.act_window,name:tw_companycam.action_companycam_project
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_projects
+msgid "Projects"
+msgstr "Progetti"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_qr
+msgid "QR code"
+msgstr "Codice QR"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_qr_url
+msgid "QR code link"
+msgstr "Link del codice QR"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__rating_ids
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__rating_ids
+msgid "Ratings"
+msgstr "Valutazioni"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Redo"
+msgstr "Ripeti"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Remove all markup"
+msgstr "Rimuovi tutte le annotazioni"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Remove markup"
+msgstr "Rimuovi annotazioni"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Remove the markup? The original photo stays as it is."
+msgstr "Rimuovere le annotazioni? La foto originale resta com'è."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__message_has_sms_error
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Errore di consegna SMS"
+
+#. module: tw_companycam
+#: model:companycam.tag,name:tw_companycam.tag_safety
+msgid "Safety"
+msgstr "Sicurezza"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Save"
+msgstr "Salva"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Saving"
+msgstr "Salvataggio"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/project_picker/project_picker.xml:0
+msgid "Search"
+msgstr "Cerca"
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+msgid "Select at least one photo or video to share."
+msgstr "Seleziona almeno una foto o un video da condividere."
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_gallery
+msgid ""
+"Select photos in <b>Photos and videos</b> and choose <b>Actions › Share</b> to send them\n"
+"               to a customer or an insurance adjuster with a simple link."
+msgstr ""
+"Seleziona le foto in <b>Foto e video</b> e scegli <b>Azioni › Condividi</b> per inviarle\n"
+"               a un cliente o a un perito assicurativo con un semplice link."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Selected"
+msgstr "Selezionata"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_tag__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Share"
+msgstr "Condividi"
+
+#. module: tw_companycam
+#: model:ir.actions.server,name:tw_companycam.action_server_companycam_share
+msgid "Share (create gallery link)"
+msgstr "Condividi (crea link galleria)"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Share progress"
+msgstr "Condividi l'avanzamento"
+
+#. module: tw_companycam
+#: model:ir.ui.menu,name:tw_companycam.menu_companycam_galleries
+msgid "Shared"
+msgstr "Condivisi"
+
+#. module: tw_companycam
+#: model:ir.model,name:tw_companycam.model_companycam_gallery
+msgid "Shared Photo Gallery"
+msgstr "Galleria foto condivisa"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_list
+msgid "Shared by"
+msgstr "Condivisa da"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_search
+msgid "Shared by me"
+msgstr "Condivise da me"
+
+#. module: tw_companycam
+#: model:ir.actions.act_window,name:tw_companycam.action_companycam_gallery
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_list
+msgid "Shared galleries"
+msgstr "Gallerie condivise"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "Shared gallery"
+msgstr "Galleria condivisa"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_list
+msgid "Shared on"
+msgstr "Condivisa il"
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "Shared photos"
+msgstr "Foto condivise"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__intro
+msgid ""
+"Short text shown at the top of the shared page, e.g. for the insurance "
+"adjuster."
+msgstr ""
+"Breve testo mostrato in cima alla pagina condivisa, ad es. per il perito "
+"assicurativo."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Show all projects"
+msgstr "Mostra tutti i progetti"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__show_details
+msgid "Show date, time and location"
+msgstr "Mostra data, ora e posizione"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+msgid "Show older"
+msgstr "Mostra precedenti"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__show_details
+msgid "Show when and where each photo was taken on the shared page."
+msgstr ""
+"Mostra sulla pagina condivisa quando e dove è stata scattata ogni foto."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__starred
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Starred"
+msgstr "Preferite"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Start recording"
+msgstr "Avvia registrazione"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Stop recording"
+msgstr "Ferma registrazione"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Street, ZIP City"
+msgstr "Via, NPA Località"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Switch camera"
+msgstr "Cambia fotocamera"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__tag_ids
+msgid "Tags"
+msgstr "Etichette"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Tags for the next photos"
+msgstr "Etichette per le prossime foto"
+
+#. module: tw_companycam
+#: model_terms:ir.actions.act_window,help:tw_companycam.action_companycam_tag
+msgid ""
+"Tags like Before, After or Damage help find photos within and across "
+"projects."
+msgstr ""
+"Etichette come Prima, Dopo o Danno aiutano a trovare le foto in un progetto "
+"e tra progetti."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Take photo"
+msgstr "Scatta foto"
+
+#. module: tw_companycam
+#: model:res.groups,comment:tw_companycam.group_companycam_user
+msgid "Takes photos and videos, adds markup and shares galleries."
+msgstr "Scatta foto e video, aggiunge annotazioni e condivide gallerie."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.js:0
+msgid "Text"
+msgstr "Testo"
+
+#. module: tw_companycam
+#. odoo-python
+#: code:addons/tw_companycam/controllers/main.py:0
+msgid "The file is empty or too large."
+msgstr "Il file è vuoto o troppo grande."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"This browser cannot open the camera here. Use “Upload” to add photos and "
+"videos from your device."
+msgstr ""
+"Questo browser non può aprire la fotocamera qui. Usa “Carica” per aggiungere"
+" foto e video dal dispositivo."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"This device cannot use both cameras at the same time. Videos are recorded "
+"with the back camera."
+msgstr ""
+"Questo dispositivo non può usare entrambe le fotocamere insieme. I video "
+"vengono registrati con la fotocamera posteriore."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "This photo could not be opened."
+msgstr "Impossibile aprire questa foto."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_timeline_url
+msgid "Timeline link"
+msgstr "Link avanzamento"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__name
+msgid "Title"
+msgstr "Titolo"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Title or caption"
+msgstr "Titolo o didascalia"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Try again"
+msgstr "Riprova"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid ""
+"Turn on to get a link your customer can open to follow the job, with every "
+"photo in real time."
+msgstr ""
+"Attiva per ottenere un link che il cliente può aprire per seguire il lavoro,"
+" con ogni foto in tempo reale."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__media_type
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Type, then press Enter"
+msgstr "Scrivi, poi premi Invio"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/annotate/annotate_action.xml:0
+msgid "Undo"
+msgstr "Annulla"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Upload"
+msgstr "Carica"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Upload from device"
+msgstr "Carica dal dispositivo"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Upload interrupted."
+msgstr "Caricamento interrotto."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Upload photos or videos"
+msgstr "Carica foto o video"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Uploading"
+msgstr "Caricamento"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Uploading %s captures saved on this device."
+msgstr "Caricamento di %s acquisizioni salvate su questo dispositivo."
+
+#. module: tw_companycam
+#: model:res.groups,name:tw_companycam.group_companycam_user
+msgid "User"
+msgstr "Utente"
+
+#. module: tw_companycam
+#. odoo-javascript
+#. odoo-python
+#: code:addons/tw_companycam/models/companycam_photo.py:0
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__video_file
+#: model:ir.model.fields.selection,name:tw_companycam.selection__companycam_photo__media_type__video
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_kanban
+msgid "Video"
+msgstr "Video"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__video_filename
+msgid "Video Filename"
+msgstr "Nome file video"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__video_mimetype
+msgid "Video Mimetype"
+msgstr "Tipo MIME video"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "Video file"
+msgstr "File video"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/video_field/video_field.js:0
+msgid "Video player"
+msgstr "Lettore video"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid ""
+"Video recording is not supported by this browser. Use “Upload” instead."
+msgstr ""
+"La registrazione video non è supportata da questo browser. Usa invece "
+"“Carica”."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.xml:0
+#: model:ir.model.fields,field_description:tw_companycam.field_project_project__companycam_video_count
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_kanban_companycam
+msgid "Videos"
+msgstr "Video"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.js:0
+msgid "Videos can last up to 4 minutes. Recording stopped and saved."
+msgstr ""
+"I video possono durare al massimo 4 minuti. Registrazione fermata e salvata."
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__view_count
+msgid "Views"
+msgstr "Visualizzazioni"
+
+#. module: tw_companycam
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_gallery__website_message_ids
+#: model:ir.model.fields,field_description:tw_companycam.field_companycam_photo__website_message_ids
+msgid "Website Messages"
+msgstr "Messaggi sito web"
+
+#. module: tw_companycam
+#: model:ir.model.fields,help:tw_companycam.field_companycam_gallery__website_message_ids
+#: model:ir.model.fields,help:tw_companycam.field_companycam_photo__website_message_ids
+msgid "Website communication history"
+msgstr "Cronologia comunicazioni sito web"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid "Where"
+msgstr "Dove"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_form_companycam
+msgid ""
+"Whoever has the current link will no longer be able to open it. Continue?"
+msgstr "Chi ha il link attuale non potrà più aprirlo. Continuare?"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_search
+msgid "With markup"
+msgstr "Con annotazioni"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.project_project_view_search_companycam
+msgid "With photos"
+msgstr "Con foto"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/feed/feed_action.js:0
+msgid "added %s"
+msgstr "ha aggiunto %s"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_photo_view_form
+msgid "e.g. Kitchen wall before demolition"
+msgstr "es. Parete cucina prima della demolizione"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.companycam_gallery_view_form
+msgid "e.g. Roof damage for the insurance"
+msgstr "es. Danni al tetto per l'assicurazione"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.report_companycam_photos
+msgid "items"
+msgstr "elementi"
+
+#. module: tw_companycam
+#: model_terms:ir.ui.view,arch_db:tw_companycam.public_gallery_page
+msgid "photos and videos"
+msgstr "foto e video"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "saved on this device, they will upload automatically."
+msgstr "salvate su questo dispositivo, verranno caricate automaticamente."

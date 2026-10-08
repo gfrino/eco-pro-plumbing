@@ -1,0 +1,156 @@
+// Public share page (gallery / live timeline). Standalone: no Bootstrap.
+$cc-accent: #1463ff;
+$cc-ink: #16202e;
+$cc-muted: #5d6b7d;
+$cc-line: #e3e8ef;
+$cc-bg: #f5f7fa;
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: $cc-bg;
+    color: $cc-ink;
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+a { color: $cc-accent; }
+
+.cc-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.cc-header {
+    background: #fff;
+    border-bottom: 1px solid $cc-line;
+}
+
+.cc-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+}
+
+.cc-logo {
+    max-height: 40px;
+    max-width: 160px;
+    object-fit: contain;
+}
+
+.cc-company {
+    font-weight: 600;
+    color: $cc-muted;
+}
+
+.cc-hero {
+    padding: 32px 0 8px;
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        line-height: 1.15;
+    }
+}
+
+.cc-kicker {
+    margin: 0 0 4px;
+    color: $cc-accent;
+    font-weight: 600;
+    font-size: .85rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.cc-meta, .cc-empty {
+    color: $cc-muted;
+    margin: 0;
+}
+
+.cc-intro {
+    background: #fff;
+    border: 1px solid $cc-line;
+    border-left: 4px solid $cc-accent;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    white-space: pre-line;
+}
+
+.cc-day {
+    margin-top: 28px;
+
+    h2 {
+        font-size: 1.05rem;
+        color: $cc-muted;
+        margin: 0 0 12px;
+        position: sticky;
+        top: 0;
+        background: $cc-bg;
+        padding: 8px 0;
+        z-index: 1;
+    }
+}
+
+.cc-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.cc-card {
+    margin: 0;
+    background: #fff;
+    border: 1px solid $cc-line;
+    border-radius: 12px;
+    overflow: hidden;
+
+    figcaption { padding: 10px 12px 12px; }
+}
+
+.cc-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #0f1724;
+}
+
+.cc-caption { margin: 0 0 6px; }
+
+.cc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 6px;
+}
+
+.cc-tag {
+    background: #eaf1ff;
+    color: $cc-accent;
+    border-radius: 99px;
+    padding: 1px 10px;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.cc-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 0;
+    color: $cc-muted;
+    font-size: .85rem;
+
+    a { text-decoration: none; }
+}
+
+.cc-footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: $cc-muted;
+    font-size: .9rem;
+    text-align: center;
+}

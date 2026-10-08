@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+*.zip
+# Server upgrade scripts contain paths and DB names: never commit them
+upgrade_*.sh
+*.local.sh

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tw_companycam.VideoField">
+        <video t-if="hasVideo" class="o_companycam_video_player" controls="" preload="metadata" playsinline=""
+               t-att-poster="poster" t-att-src="src"/>
+        <span t-else="" class="text-muted">No video</span>
+    </t>
+</templates>

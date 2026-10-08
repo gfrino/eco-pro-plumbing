@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_companycam_root" name="CompanyCam" sequence="45"
+              web_icon="tw_companycam,static/description/icon.png"
+              groups="group_companycam_user" action="action_companycam_feed"/>
+
+    <menuitem id="menu_companycam_feed" name="Feed" parent="menu_companycam_root"
+              action="action_companycam_feed" sequence="1"/>
+    <menuitem id="menu_companycam_camera" name="Camera" parent="menu_companycam_root"
+              action="action_companycam_camera" sequence="2"/>
+    <menuitem id="menu_companycam_projects" name="Projects" parent="menu_companycam_root"
+              action="action_companycam_project" sequence="3"/>
+    <menuitem id="menu_companycam_photos" name="Photos and videos" parent="menu_companycam_root"
+              action="action_companycam_photo" sequence="4"/>
+    <menuitem id="menu_companycam_galleries" name="Shared" parent="menu_companycam_root"
+              action="action_companycam_gallery" sequence="5"/>
+
+    <menuitem id="menu_companycam_config" name="Configuration" parent="menu_companycam_root"
+              sequence="90" groups="group_companycam_manager"/>
+    <menuitem id="menu_companycam_tags" name="Photo tags" parent="menu_companycam_config"
+              action="action_companycam_tag" sequence="1"/>
+</odoo>

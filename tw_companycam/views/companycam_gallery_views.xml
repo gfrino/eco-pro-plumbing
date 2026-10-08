@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="companycam_gallery_view_list" model="ir.ui.view">
+        <field name="name">companycam.gallery.list</field>
+        <field name="model">companycam.gallery</field>
+        <field name="arch" type="xml">
+            <list string="Shared galleries">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="photo_count" string="Items"/>
+                <field name="view_count"/>
+                <field name="expiry_date"/>
+                <field name="create_uid" string="Shared by" widget="many2one_avatar_user"/>
+                <field name="create_date" string="Shared on"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="companycam_gallery_view_form" model="ir.ui.view">
+        <field name="name">companycam.gallery.form</field>
+        <field name="model">companycam.gallery</field>
+        <field name="arch" type="xml">
+            <form string="Shared gallery">
+                <header>
+                    <button name="action_open_public_page" type="object" string="Preview" class="btn-primary"
+                            icon="fa-external-link" invisible="not id"/>
+                    <button name="action_print_report" type="object" string="Print PDF" icon="fa-print"
+                            invisible="not id"/>
+                    <button name="action_regenerate_link" type="object" string="New link" invisible="not id"
+                            confirm="Create a new link? Whoever has the current link will no longer be able to open it."/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Roof damage for the insurance"/></h1>
+                    </div>
+                    <div class="alert alert-info d-flex align-items-center gap-2" role="status" invisible="not id">
+                        <i class="fa fa-link" role="img" aria-label="Link"/>
+                        <span>Send this link: whoever opens it sees only the photos below, no login needed.</span>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="share_url" widget="CopyClipboardURL" invisible="not id"/>
+                            <field name="project_id"/>
+                            <field name="expiry_date"/>
+                        </group>
+                        <group>
+                            <field name="show_details"/>
+                            <field name="view_count" invisible="not id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <field name="intro" placeholder="Message shown at the top of the page (optional)"/>
+                    <separator string="Photos and videos in this gallery"/>
+                    <field name="photo_ids" mode="kanban"
+                           context="{'kanban_view_ref': 'tw_companycam.companycam_photo_view_kanban'}"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="companycam_gallery_view_search" model="ir.ui.view">
+        <field name="name">companycam.gallery.search</field>
+        <field name="model">companycam.gallery</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="project_id"/>
+                <filter name="mine" string="Shared by me" domain="[('create_uid', '=', uid)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

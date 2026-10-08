@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tw_companycam.FeedAction">
+        <div class="o_companycam_feed o_action">
+            <div class="o_ccf_header">
+                <div class="o_ccf_header_inner">
+                    <h1 class="o_ccf_title">Project Feed</h1>
+                    <button class="btn btn-primary btn-lg o_ccf_camera" t-on-click="openCamera">
+                        <i class="fa fa-camera me-2" role="img" aria-label="Camera"/>Camera
+                    </button>
+                </div>
+                <div class="o_ccf_filters">
+                    <div class="btn-group" role="group" aria-label="Type">
+                        <button class="btn btn-sm" t-att-class="state.mediaType === 'all' ? 'btn-dark' : 'btn-outline-secondary'"
+                                t-on-click="() => this.setMediaType('all')">All</button>
+                        <button class="btn btn-sm" t-att-class="state.mediaType === 'photo' ? 'btn-dark' : 'btn-outline-secondary'"
+                                t-on-click="() => this.setMediaType('photo')">Photos</button>
+                        <button class="btn btn-sm" t-att-class="state.mediaType === 'video' ? 'btn-dark' : 'btn-outline-secondary'"
+                                t-on-click="() => this.setMediaType('video')">Videos</button>
+                    </div>
+                    <button class="btn btn-sm" t-att-class="state.onlyMine ? 'btn-dark' : 'btn-outline-secondary'" t-on-click="toggleMine">
+                        <i class="fa fa-user me-1" role="img" aria-label="Me"/>Only mine
+                    </button>
+                    <span t-if="state.project" class="o_ccf_chip">
+                        <i class="fa fa-folder-open me-1" role="img" aria-label="Project"/>
+                        <t t-esc="state.project.name"/>
+                        <button class="btn btn-link btn-sm p-0 ms-2" t-on-click="clearProject" title="Show all projects" aria-label="Show all projects">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </span>
+                    <button t-else="" class="btn btn-sm btn-outline-secondary" t-on-click="pickProject">
+                        <i class="fa fa-folder-open me-1" role="img" aria-label="Project"/>Choose a project
+                    </button>
+                </div>
+            </div>
+
+            <div class="o_ccf_body">
+                <div t-if="!state.loading and !state.photos.length" class="o_ccf_empty">
+                    <i class="fa fa-camera fa-3x mb-3" role="img" aria-label="Camera"/>
+                    <h3>No photos yet</h3>
+                    <p>Open the camera to take the first job-site photo: date, time and location are saved automatically.</p>
+                    <button class="btn btn-primary btn-lg" t-on-click="openCamera">
+                        <i class="fa fa-camera me-2" role="img" aria-label="Camera"/>Open the camera
+                    </button>
+                </div>
+
+                <article t-foreach="activities" t-as="activity" t-key="activity.key" class="o_ccf_card">
+                    <header class="o_ccf_card_head">
+                        <img t-if="activity.user" class="o_ccf_avatar" alt=""
+                             t-att-src="'/web/image/res.users/' + activity.user[0] + '/avatar_128'"/>
+                        <div class="overflow-hidden">
+                            <div class="text-truncate">
+                                <strong t-esc="activity.user ? activity.user[1] : ''"/>
+                                <t t-esc="' ' + activityTitle(activity)"/>
+                            </div>
+                            <div class="small text-muted text-truncate">
+                                <a href="#" t-on-click.prevent="() => this.openProject(activity.project[0])" t-esc="activity.project[1]"/>
+                                · <t t-esc="relativeTime(activity.when)"/>
+                            </div>
+                        </div>
+                    </header>
+                    <div t-attf-class="o_ccf_grid o_ccf_grid_{{ Math.min(activity.items.length, 4) }}">
+                        <button t-foreach="visibleItems(activity)" t-as="item" t-key="item.photo.id" class="o_ccf_thumb"
+                                t-on-click="() => this.openLightbox(item.index)">
+                            <img t-att-src="photoImageUrl(item.photo)" loading="lazy" t-att-alt="item.photo.name"/>
+                            <span t-if="item.photo.media_type === 'video'" class="o_ccf_play"><i class="fa fa-play" role="img" aria-label="Video"/></span>
+                            <span t-if="item.photo.has_annotation" class="o_ccf_badge"><i class="fa fa-pencil" role="img" aria-label="Markup"/></span>
+                            <span t-if="item_last and hiddenCount(activity)" class="o_ccf_more">+<t t-esc="hiddenCount(activity)"/></span>
+                        </button>
+                    </div>
+                </article>
+
+                <div class="text-center my-4">
+                    <i t-if="state.loading" class="fa fa-spinner fa-spin fa-2x text-muted" role="img" aria-label="Loading"/>
+                    <button t-elif="state.hasMore" class="btn btn-outline-secondary" t-on-click="() => this.load(true)">Show older</button>
+                </div>
+            </div>
+
+            <!-- Lightbox -->
+            <div t-if="lightboxPhoto" class="o_ccf_lightbox" t-on-click.self="closeLightbox">
+                <t t-set="photo" t-value="lightboxPhoto"/>
+                <button class="o_ccf_lb_close" t-on-click="closeLightbox" title="Close" aria-label="Close"><i class="fa fa-times"/></button>
+                <button class="o_ccf_lb_nav o_ccf_lb_prev" t-if="state.lightbox > 0" t-on-click="() => this.moveLightbox(-1)" title="Newer" aria-label="Newer">
+                    <i class="fa fa-chevron-left"/>
+                </button>
+                <button class="o_ccf_lb_nav o_ccf_lb_next" t-if="state.lightbox &lt; state.photos.length - 1" t-on-click="() => this.moveLightbox(1)" title="Older" aria-label="Older">
+                    <i class="fa fa-chevron-right"/>
+                </button>
+                <div class="o_ccf_lb_media" t-on-click.self="closeLightbox">
+                    <video t-if="photo.media_type === 'video'" t-key="photo.id" controls="" autoplay="" playsinline=""
+                           t-att-poster="'/web/image/companycam.photo/' + photo.id + '/image_1024'"
+                           t-att-src="'/web/content/companycam.photo/' + photo.id + '/video_file'"/>
+                    <img t-else="" t-key="photo.id" t-att-src="photoImageUrl(photo, true)" t-att-alt="photo.name"/>
+                </div>
+                <div class="o_ccf_lb_info">
+                    <div class="fw-bold" t-esc="photo.project_id[1]"/>
+                    <div class="small opacity-75">
+                        <t t-esc="photo.user_id ? photo.user_id[1] : ''"/> · <t t-esc="photoTime(photo)"/>
+                        <a t-if="photo.has_location" t-att-href="photo.map_url" target="_blank" class="ms-2 text-white">
+                            <i class="fa fa-map-marker me-1" role="img" aria-label="Location"/>Map
+                        </a>
+                    </div>
+                    <div t-if="photo.description" class="mt-1" t-esc="photo.description"/>
+                    <div class="d-flex flex-wrap gap-1 mt-2" t-if="photo.tag_ids.length">
+                        <span t-foreach="tagList(photo)" t-as="tag" t-key="tag.id" class="badge rounded-pill"
+                              t-attf-class="o_tag_color_{{ tag.color }}" t-esc="tag.name"/>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                        <button t-if="photo.media_type === 'photo'" class="btn btn-light btn-sm" t-on-click="() => this.annotate(photo)">
+                            <i class="fa fa-pencil me-1" role="img" aria-label="Markup"/>Markup
+                        </button>
+                        <button class="btn btn-outline-light btn-sm" t-on-click="() => this.openPhotoForm(photo)">
+                            <i class="fa fa-info-circle me-1" role="img" aria-label="Details"/>Details, tags and comments
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

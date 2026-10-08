@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tw_companycam.AnnotateAction">
+        <div class="o_companycam_annotate">
+            <div class="o_cca_top">
+                <button class="btn btn-link text-white" t-on-click="back" t-att-disabled="state.saving">
+                    <i class="fa fa-chevron-left me-1" role="img" aria-label="Back"/>Cancel
+                </button>
+                <span class="o_cca_title text-truncate" t-esc="state.name"/>
+                <div class="d-flex gap-1">
+                    <button class="o_cca_icon" t-on-click="undo" t-att-disabled="!state.shapes.length" title="Undo" aria-label="Undo">
+                        <i class="fa fa-undo"/>
+                    </button>
+                    <button class="o_cca_icon" t-on-click="redoLast" t-att-disabled="!state.redo.length" title="Redo" aria-label="Redo">
+                        <i class="fa fa-repeat"/>
+                    </button>
+                    <button class="o_cca_icon" t-on-click="clearAll" t-att-disabled="!state.shapes.length" title="Remove all markup" aria-label="Remove all markup">
+                        <i class="fa fa-trash"/>
+                    </button>
+                    <button class="btn btn-primary ms-2" t-on-click="save" t-att-disabled="state.saving or state.loading">
+                        <i t-if="state.saving" class="fa fa-spinner fa-spin me-1" role="img" aria-label="Saving"/>Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="o_cca_stage">
+                <div class="o_cca_canvas_wrap">
+                    <canvas t-ref="canvas" class="o_cca_canvas" t-att-class="{ 'o_cca_text_cursor': state.tool === 'text' }"
+                            t-on-pointerdown="onPointerDown" t-on-pointermove="onPointerMove"
+                            t-on-pointerup="onPointerUp" t-on-pointercancel="onPointerUp"/>
+                    <textarea t-if="state.text" t-ref="textInput" class="o_cca_text_input" rows="1"
+                              placeholder="Type, then press Enter"
+                              t-att-style="'left:' + state.text.left + 'px;top:' + state.text.top + 'px;color:' + state.color + ';font-size:' + Math.max(14, state.text.fontPx) + 'px'"
+                              t-model="state.text.value" t-on-keydown="onTextKeydown"/>
+                </div>
+                <div t-if="state.loading" class="o_cca_loading">
+                    <t t-if="photoId"><i class="fa fa-spinner fa-spin fa-2x" role="img" aria-label="Loading"/></t>
+                    <t t-else="">This photo could not be opened.</t>
+                </div>
+            </div>
+
+            <div class="o_cca_bottom">
+                <div class="o_cca_tools">
+                    <button t-foreach="tools" t-as="tool" t-key="tool.key" class="o_cca_tool"
+                            t-att-class="{ 'o_cca_on': state.tool === tool.key }" t-on-click="() => this.setTool(tool.key)">
+                        <i t-attf-class="fa {{ tool.icon }}" role="img" t-att-aria-label="tool.label"/>
+                        <span t-esc="tool.label"/>
+                    </button>
+                </div>
+                <div class="o_cca_palette">
+                    <button t-foreach="colors" t-as="color" t-key="color" class="o_cca_color"
+                            t-att-class="{ 'o_cca_on': state.color === color }"
+                            t-att-style="'background:' + color" t-on-click="() => this.state.color = color"
+                            t-att-aria-label="color"/>
+                    <span class="o_cca_sep"/>
+                    <button t-foreach="sizes" t-as="size" t-key="size" class="o_cca_size"
+                            t-att-class="{ 'o_cca_on': state.size === size }" t-on-click="() => this.state.size = size">
+                        <span t-attf-class="o_cca_dot o_cca_dot_{{ size }}"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

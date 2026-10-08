@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_companycam_feed" model="ir.actions.client">
+        <field name="name">Project Feed</field>
+        <field name="tag">tw_companycam.feed</field>
+        <field name="path">companycam</field>
+    </record>
+
+    <record id="action_companycam_camera" model="ir.actions.client">
+        <field name="name">Camera</field>
+        <field name="tag">tw_companycam.camera</field>
+        <field name="path">companycam-camera</field>
+        <field name="target">fullscreen</field>
+    </record>
+
+    <record id="action_companycam_project" model="ir.actions.act_window">
+        <field name="name">Projects</field>
+        <field name="res_model">project.project</field>
+        <field name="path">companycam-projects</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="project_project_view_search_companycam"/>
+        <field name="domain">[('is_template', '=', False)]</field>
+        <field name="context">{'search_default_my_projects': 0}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('project_project_view_kanban_companycam')}),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('project.view_project')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('project.edit_project')})]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first job site project</p>
+            <p>Every photo and video you take is saved in a project: one project per job site or customer.</p>
+        </field>
+    </record>
+
+    <record id="action_companycam_photo" model="ir.actions.act_window">
+        <field name="name">Photos and videos</field>
+        <field name="res_model">companycam.photo</field>
+        <field name="path">companycam-photos</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="companycam_photo_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No photos yet</p>
+            <p>Open the <b>Camera</b> from the menu or from a project to take your first job-site photo.
+               Date, time and location are saved automatically.</p>
+        </field>
+    </record>
+
+    <record id="action_companycam_gallery" model="ir.actions.act_window">
+        <field name="name">Shared galleries</field>
+        <field name="res_model">companycam.gallery</field>
+        <field name="path">companycam-galleries</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing shared yet</p>
+            <p>Select photos in <b>Photos and videos</b> and choose <b>Actions › Share</b> to send them
+               to a customer or an insurance adjuster with a simple link.</p>
+        </field>
+    </record>
+
+    <record id="action_companycam_tag" model="ir.actions.act_window">
+        <field name="name">Photo tags</field>
+        <field name="res_model">companycam.tag</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a tag</p>
+            <p>Tags like Before, After or Damage help find photos within and across projects.</p>
+        </field>
+    </record>
+
+    <!-- Multi-selection actions on photos -->
+    <record id="action_server_companycam_share" model="ir.actions.server">
+        <field name="name">Share (create gallery link)</field>
+        <field name="model_id" ref="model_companycam_photo"/>
+        <field name="binding_model_id" ref="model_companycam_photo"/>
+        <field name="binding_view_types">list,kanban,form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_companycam_create_gallery()</field>
+    </record>
+</odoo>

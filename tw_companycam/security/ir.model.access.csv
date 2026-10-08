@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_companycam_photo_user,companycam.photo user,model_companycam_photo,group_companycam_user,1,1,1,1
+access_companycam_tag_user,companycam.tag user,model_companycam_tag,group_companycam_user,1,0,0,0
+access_companycam_tag_manager,companycam.tag manager,model_companycam_tag,group_companycam_manager,1,1,1,1
+access_companycam_gallery_user,companycam.gallery user,model_companycam_gallery,group_companycam_user,1,1,1,1
+access_companycam_photo_project_user,companycam.photo project user,model_companycam_photo,project.group_project_user,1,0,0,0
+access_companycam_tag_project_user,companycam.tag project user,model_companycam_tag,project.group_project_user,1,0,0,0

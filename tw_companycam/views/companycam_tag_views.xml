@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="companycam_tag_view_list" model="ir.ui.view">
+        <field name="name">companycam.tag.list</field>
+        <field name="model">companycam.tag</field>
+        <field name="arch" type="xml">
+            <list string="Photo tags" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+                <field name="photo_count" string="Photos"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="companycam_tag_view_search" model="ir.ui.view">
+        <field name="name">companycam.tag.search</field>
+        <field name="model">companycam.tag</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
