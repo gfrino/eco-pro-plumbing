@@ -24,6 +24,8 @@ Capture and organise job-site photos and videos directly inside Odoo projects.
 
 Version History
 ---------------
+* 19.0.1.4.0 - All internal users get CompanyCam by default (existing users on install/update,
+  new users through the default access rights); it can still be removed from a single user.
 * 19.0.1.3.0 - iPhone: the preview could still stay black because Safari played the camera
   video without painting it (photos were fine). The preview is now painted on a canvas from
   the camera frames, and the blur effects over the preview (a known Safari trigger) are gone.
@@ -34,7 +36,7 @@ Version History
   filed in a project later ("Without project" filter), so a quick shot is never blocked.
 * 19.0.1.0.0 - First release.
 """,
-    'version': '19.0.1.3.0',
+    'version': '19.0.1.4.0',
     'author': 'ticinoWEB',
     'website': 'https://ticinoweb.tech',
     'maintainer': 'ticinoWEB',
@@ -66,6 +68,7 @@ Version History
         ],
     },
     'images': ['static/description/icon.png'],
+    'post_init_hook': 'post_init_hook',
     'application': True,
     'installable': True,
     'auto_install': False,

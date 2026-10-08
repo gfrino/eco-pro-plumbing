@@ -8,7 +8,7 @@ added as-is to the Odoo `addons_path`.
 
 | Module | Version | Description |
 | --- | --- | --- |
-| [`tw_companycam`](tw_companycam) | 19.0.1.3.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
+| [`tw_companycam`](tw_companycam) | 19.0.1.4.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
 | [`eco_pro_custom`](eco_pro_custom) | 19.0.1.3.0 | **Eco Pro Customizations** – Job Location / EIN labels, credit-card fee, "Estimates" menu, marketing tab on contacts (pre-filled on quotations), formatted quotation notes |
 | [`interventi_management`](interventi_management) | 19.0.1.2.0 | **Job Requests** – plan job requests quickly from contacts |
 | [`quick_quotation`](quick_quotation) | 1.0 | **Quick Estimates** – dashboard to build estimates fast from Good/Better/Best templates |
@@ -43,7 +43,8 @@ Capture and organise job-site photos and videos directly inside Odoo projects
 
 Menu: **CompanyCam** (Feed, Camera, Projects, Photos and videos, Shared, Configuration).
 Access groups: *CompanyCam / User* (users delete only their own captures) and
-*CompanyCam / Administrator*.
+*CompanyCam / Administrator*. Every internal user gets *User* by default (also new users);
+remove it from a single user in Settings › Users if needed.
 
 > The camera needs HTTPS (or localhost) to be allowed by the browser.
 
@@ -55,6 +56,8 @@ Access groups: *CompanyCam / User* (users delete only their own captures) and
 ## Changelog
 
 - **interventi_management 19.0.1.2.0** – Job Requests get the chatter (attachments, notes, activities, status change log): technicians and office staff could not attach photos or documents to a job.
+- **tw_companycam 19.0.1.4.0** – All internal users get CompanyCam by default (existing users on
+  install/update, new users via the default access rights); it can be removed per user.
 - **tw_companycam 19.0.1.3.0** – iPhone: preview painted on a canvas from the camera frames,
   because Safari could play the camera video without showing it; blur effects over it removed.
 - **tw_companycam 19.0.1.2.0** – iPhone: black camera preview fixed (iOS Safari video setup,
