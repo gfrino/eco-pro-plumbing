@@ -9,6 +9,11 @@
                    t-att-class="{ 'd-none': state.mode !== 'dual' }"/>
             <div class="o_cc_flash" t-att-class="{ 'o_cc_flash_on': state.flash }"/>
 
+            <button t-if="state.needsTap and !state.error" class="o_cc_tap" t-on-click="playPreview">
+                <i class="fa fa-play-circle fa-3x mb-2" role="img" aria-label="Start preview"/>
+                <span>Tap to show the camera preview</span>
+            </button>
+
             <div t-if="state.error" class="o_cc_error">
                 <i class="fa fa-video-camera fa-3x mb-3" role="img" aria-label="Camera"/>
                 <p t-esc="state.error"/>

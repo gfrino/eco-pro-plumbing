@@ -1637,3 +1637,15 @@ msgstr "foto e video"
 #: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
 msgid "saved on this device, they will upload automatically."
 msgstr "salvate su questo dispositivo, verranno caricate automaticamente."
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Start preview"
+msgstr "Avvia anteprima"
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Tap to show the camera preview"
+msgstr "Tocca per mostrare l'anteprima della fotocamera"

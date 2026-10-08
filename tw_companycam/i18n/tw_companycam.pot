@@ -1596,3 +1596,15 @@ msgstr ""
 #: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
 msgid "saved on this device, they will upload automatically."
 msgstr ""
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Start preview"
+msgstr ""
+
+#. module: tw_companycam
+#. odoo-javascript
+#: code:addons/tw_companycam/static/src/backend/camera/camera_action.xml:0
+msgid "Tap to show the camera preview"
+msgstr ""

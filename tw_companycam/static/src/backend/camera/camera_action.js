@@ -51,6 +51,7 @@ export class CompanyCamCamera extends Component {
             facing: "environment",
             ready: false,
             error: "",
+            needsTap: false, // iOS refused to start the preview by itself
             recording: false,
             recSeconds: 0,
             flash: false,
@@ -90,6 +91,12 @@ export class CompanyCamCamera extends Component {
             this.onOffline = () => (this.state.online = false);
             window.addEventListener("online", this.onOnline);
             window.addEventListener("offline", this.onOffline);
+            // iOS pauses the preview when the app goes to background or after a capture
+            this.onVisibility = () => document.visibilityState === "visible" && this.checkPreview();
+            this.onVideoPaused = () => setTimeout(() => this.checkPreview(), 300);
+            document.addEventListener("visibilitychange", this.onVisibility);
+            this.videoRef.el.addEventListener("pause", this.onVideoPaused);
+            this.videoRef.el.addEventListener("stalled", this.onVideoPaused);
             this.clock = setInterval(() => (this.state.now = new Date()), 1000);
             this.watchLocation();
             await this.restorePendingCaptures();
@@ -104,6 +111,7 @@ export class CompanyCamCamera extends Component {
             clearInterval(this.recTimer);
             window.removeEventListener("online", this.onOnline);
             window.removeEventListener("offline", this.onOffline);
+            document.removeEventListener("visibilitychange", this.onVisibility);
             if (this.geoWatch !== undefined) {
                 navigator.geolocation.clearWatch(this.geoWatch);
             }
@@ -204,8 +212,10 @@ export class CompanyCamCamera extends Component {
             return;
         }
         const video = this.videoRef.el;
+        this.prepareVideo(video);
         video.srcObject = this.stream;
-        await video.play().catch(() => {});
+        await this.waitForMetadata(video);
+        await this.playPreview();
 
         if (this.state.mode === "dual") {
             await this.startPip();
@@ -239,6 +249,7 @@ export class CompanyCamCamera extends Component {
             return;
         }
         const pip = this.pipRef.el;
+        this.prepareVideo(pip);
         pip.srcObject = this.pipStream;
         await pip.play().catch(() => {});
     }
@@ -249,6 +260,68 @@ export class CompanyCamCamera extends Component {
         }
         this.stream = null;
         this.pipStream = null;
+        for (const ref of [this.videoRef, this.pipRef]) {
+            if (ref.el) {
+                ref.el.srcObject = null;
+            }
+        }
+    }
+
+    /**
+     * iOS Safari shows a black preview unless the video is muted and inline as *properties*
+     * (template attributes are not enough on cloned elements), set before the stream.
+     */
+    prepareVideo(video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.setAttribute("muted", "");
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+    }
+
+    waitForMetadata(video) {
+        if (video.readyState >= 1) {
+            return Promise.resolve();
+        }
+        return new Promise((resolve) => {
+            const done = () => {
+                video.removeEventListener("loadedmetadata", done);
+                resolve();
+            };
+            video.addEventListener("loadedmetadata", done);
+            setTimeout(done, 3000);
+        });
+    }
+
+    async playPreview() {
+        const video = this.videoRef.el;
+        if (!video || !this.stream) {
+            return;
+        }
+        try {
+            await video.play();
+            this.state.needsTap = false;
+        } catch {
+            // Autoplay refused: a tap (user gesture) is needed to start it
+            this.state.needsTap = true;
+        }
+    }
+
+    /** Restart the preview if iOS paused it, or reopen the camera if the track died. */
+    async checkPreview() {
+        if (this.unmounted || !this.stream || this.state.recording) {
+            return;
+        }
+        const track = this.stream.getVideoTracks()[0];
+        if (!track || track.readyState === "ended") {
+            await this.startCamera();
+            return;
+        }
+        if (this.videoRef.el?.paused) {
+            await this.playPreview();
+        }
     }
 
     async setMode(mode) {
@@ -325,8 +398,13 @@ export class CompanyCamCamera extends Component {
         }
         this.state.flash = true;
         setTimeout(() => (this.state.flash = false), 150);
+        // Free the full-size canvas right away: iOS has little canvas memory and may
+        // otherwise blank the live preview
         const blob = await canvasToBlob(canvas, 0.9);
+        canvas.width = 0;
+        canvas.height = 0;
         this.addCapture({ blob, mediaType: "photo", filename: `photo-${Date.now()}.jpg` });
+        this.checkPreview();
     }
 
     startRecording() {
