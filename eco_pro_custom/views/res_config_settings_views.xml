@@ -18,6 +18,14 @@
                         </div>
                     </div>
                 </setting>
+                <setting id="qbo_health_setting" string="QuickBooks sync monitoring" help="Hourly check of the QuickBooks connection; an e-mail is sent when the sync stops working and when it recovers">
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label for="qbo_health_alert_email" class="col-lg-4 o_light_label"/>
+                            <field name="qbo_health_alert_email" class="col-lg-8" placeholder="odoo@ticinoweb.net"/>
+                        </div>
+                    </div>
+                </setting>
             </xpath>
         </field>
     </record>

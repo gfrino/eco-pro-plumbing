@@ -9,7 +9,7 @@ added as-is to the Odoo `addons_path`.
 | Module | Version | Description |
 | --- | --- | --- |
 | [`tw_companycam`](tw_companycam) | 19.0.1.4.0 | **CompanyCam** – job-site photo & video capture inside Odoo projects |
-| [`eco_pro_custom`](eco_pro_custom) | 19.0.1.3.0 | **Eco Pro Customizations** – Job Location / EIN labels, credit-card fee, "Estimates" menu, marketing tab on contacts (pre-filled on quotations), formatted quotation notes |
+| [`eco_pro_custom`](eco_pro_custom) | 19.0.1.4.0 | **Eco Pro Customizations** – Job Location / EIN labels, credit-card fee, "Estimates" menu, marketing tab on contacts (pre-filled on quotations), formatted quotation notes, QuickBooks sync health monitor (hourly e-mail alert) |
 | [`interventi_management`](interventi_management) | 19.0.1.2.0 | **Job Requests** – plan job requests quickly from contacts |
 | [`quick_quotation`](quick_quotation) | 1.0 | **Quick Estimates** – dashboard to build estimates fast from Good/Better/Best templates |
 | [`quote_template_versions`](quote_template_versions) | 1.0 | **Quote Template Versions** – Good, Better, Best versions in quotation templates |
@@ -55,6 +55,12 @@ remove it from a single user in Settings › Users if needed.
 
 ## Changelog
 
+- **eco_pro_custom 19.0.1.4.0** – QuickBooks sync health monitor: hourly cron on `quickbooks.integration`
+  (`eco_pro_qbo_health_check`) that calls the QBO API, checks that the access token keeps being refreshed,
+  counts failed queue jobs and stuck jobs, and e-mails the address set in Settings › Invoicing ›
+  "QuickBooks sync monitoring" (default odoo@ticinoweb.net). Same problem reported at most once per 24 h,
+  one "OK again" e-mail on recovery. Born from the 11.10.2026 incident: refresh token expired after 100 days
+  and the sync silently failed with 401 for a week.
 - **interventi_management 19.0.1.2.0** – Job Requests get the chatter (attachments, notes, activities, status change log): technicians and office staff could not attach photos or documents to a job.
 - **tw_companycam 19.0.1.4.0** – All internal users get CompanyCam by default (existing users on
   install/update, new users via the default access rights); it can be removed per user.
